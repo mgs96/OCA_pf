@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { EstadosAcademicosPage } from '../estados_academicos/estados_academicos';
+
 
 /**
  * Generated class for the LoginPage page.
@@ -79,6 +81,8 @@ export class LoginPage {
 
         this.isLoggedIn = true;
 
+        this.gotoApp();
+
         // const httpOptions = {
         //   headers: new HttpHeaders({
         //     'Access-Control-Allow-Origin': '*'
@@ -111,6 +115,10 @@ export class LoginPage {
         
       })
       .catch(err => console.log(err));
+  }
+
+  gotoApp() {
+    this.navCtrl.setRoot(EstadosAcademicosPage);
   }
 
 }

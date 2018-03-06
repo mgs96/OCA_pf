@@ -7,34 +7,30 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Login</ion-title>
+    <ion-title>Bienvenido!</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <div *ngIf="isLoggedIn; else loginTemplate">
-      <h1>Welcome, {{ displayName }}!</h1>
-  
-      <p><strong>Email:</strong> {{ email }}</p>
-      <p><strong>Family Name:</strong> {{ familyName }}</p>
-      <p><strong>Name:</strong> {{ givenName }}</p>
-      <p><strong>User ID:</strong> {{ userId }}</p>
-      <p><strong>idToken: </strong> {{ idToken }}</p>
-  
-      <ion-avatar item-left>
-        <img [src]="imageUrl">
-      </ion-avatar>
-  
-      <button ion-button block color="danger" (click)="logout()">Logout From Google</button>
-    </div>
-  
-    <ng-template #loginTemplate>
-      <h1>Please Login to see your Google Account Information</h1>
-      <button ion-button block color="danger" (click)="login()">
-        <ion-icon ios="logo-google" md="logo-google"></ion-icon>
-        Login With Google
-      </button>
-    </ng-template>
+  <h1 text-center margin>Academic Follow-up</h1>
+
+  <ion-avatar item-center margin-bottom>
+      <img src="assets/imgs/icon.png">
+    </ion-avatar>
+
+  <button ion-button block color="danger" (click)="login()" margin-vertical>
+    <ion-icon ios="logo-google" md="logo-google"></ion-icon>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>Iniciar sesión con Google</ion-col>
+      </ion-row>
+    </ion-grid>
+  </button>
+
+  <!-- Remover en la versión final -->
+  <button ion-button block (click)="gotoApp()">Atajo</button>
+  <!--  -->
 </ion-content>
