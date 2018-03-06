@@ -132,7 +132,7 @@ export class LoginPage {
   }
 
   gotoApp() {
-    this.navCtrl.push(EstadosAcademicosPage);
+    this.navCtrl.setRoot(EstadosAcademicosPage);
   }
 
 }
