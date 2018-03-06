@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EstadosAcademicosPage } from '../estados_academicos/estados_academicos';
@@ -33,7 +33,7 @@ export class LoginPage {
   isLoggedIn: boolean = false;
 
   constructor(public navCtrl    : NavController, public navParams: NavParams, 
-              private googlePlus: GooglePlus) {
+              private googlePlus: GooglePlus, private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -51,6 +51,8 @@ export class LoginPage {
 
         this.isLoggedIn = true;
 
+        this.gotoApp();
+
         // const httpOptions = {
         //   headers: new HttpHeaders({
         //     'Access-Control-Allow-Origin': '*'
@@ -64,6 +66,16 @@ export class LoginPage {
         //   .subscribe(ok => console.log(JSON.stringify(ok), err => console.log(JSON.stringify(err))));
       })
       .catch(err => console.log(JSON.stringify(err)));
+  }
+
+  showToast(name: string) {
+    let toast = this.toastCtrl.create({
+      message: `Bienvenido ${ name }!`,
+      duration: 2000,
+      position: 'bottom'
+    });
+
+    toast.present(toast);
   }
 
   login() {
@@ -80,6 +92,8 @@ export class LoginPage {
         this.idToken = res.idToken;
 
         this.isLoggedIn = true;
+
+        this.showToast(res.givenName);
 
         this.gotoApp();
 
@@ -118,7 +132,7 @@ export class LoginPage {
   }
 
   gotoApp() {
-    this.navCtrl.setRoot(EstadosAcademicosPage);
+    this.navCtrl.push(EstadosAcademicosPage);
   }
 
 }
