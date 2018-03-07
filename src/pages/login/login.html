@@ -18,19 +18,25 @@
 
   <ion-avatar item-center margin-bottom>
       <img src="assets/imgs/icon.png">
-    </ion-avatar>
+  </ion-avatar>
 
-  <button ion-button block color="danger" (click)="login()" margin-vertical>
-    <ion-icon ios="logo-google" md="logo-google"></ion-icon>
+  <div *ngIf="isLoggedIn; else loginTemplate">
+    <button ion-button block color="danger" (click)="logout()">Logout From Google</button>
+  </div>
 
-    <ion-grid>
-      <ion-row>
-        <ion-col col-12>Iniciar sesión con Google</ion-col>
-      </ion-row>
-    </ion-grid>
-  </button>
-
-  <!-- Remover en la versión final -->
-  <button ion-button block (click)="gotoApp()">Atajo</button>
-  <!--  -->
+  <ng-template #loginTemplate>
+    <button ion-button block color="danger" (click)="login()" margin-vertical>
+      <ion-icon ios="logo-google" md="logo-google"></ion-icon>
+  
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>Iniciar sesión con Google</ion-col>
+        </ion-row>
+      </ion-grid>
+    </button>
+    
+    <!-- Remover en la versión final -->
+    <button ion-button block (click)="gotoApp()">Atajo</button>
+    <!--  -->
+  </ng-template>
 </ion-content>

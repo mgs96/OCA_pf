@@ -38,34 +38,34 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
-    this.googlePlus.trySilentLogin({})
-      .then(res => {
-        console.log(JSON.stringify(res));
-        this.displayName = res.displayName;
-        this.email = res.email;
-        this.familyName = res.familyName;
-        this.givenName = res.givenName;
-        this.userId = res.userId;
-        this.imageUrl = res.imageUrl;
-        this.idToken = res.idToken;
+    // this.googlePlus.trySilentLogin({})
+    //   .then(res => {
+    //     console.log(JSON.stringify(res));
+    //     this.displayName = res.displayName;
+    //     this.email = res.email;
+    //     this.familyName = res.familyName;
+    //     this.givenName = res.givenName;
+    //     this.userId = res.userId;
+    //     this.imageUrl = res.imageUrl;
+    //     this.idToken = res.idToken;
 
-        this.isLoggedIn = true;
+    //     this.isLoggedIn = true;
 
-        this.gotoApp();
+    //     this.gotoApp();
 
-        // const httpOptions = {
-        //   headers: new HttpHeaders({
-        //     'Access-Control-Allow-Origin': '*'
-        //   }),
-        //   params: {
-        //     'id_token': res.idToken,
-        //     'redirect_uri': ''
-        //   }
-        // };
-        // this.http.post(this.api1, {} , httpOptions)
-        //   .subscribe(ok => console.log(JSON.stringify(ok), err => console.log(JSON.stringify(err))));
-      })
-      .catch(err => console.log(JSON.stringify(err)));
+    //     // const httpOptions = {
+    //     //   headers: new HttpHeaders({
+    //     //     'Access-Control-Allow-Origin': '*'
+    //     //   }),
+    //     //   params: {
+    //     //     'id_token': res.idToken,
+    //     //     'redirect_uri': ''
+    //     //   }
+    //     // };
+    //     // this.http.post(this.api1, {} , httpOptions)
+    //     //   .subscribe(ok => console.log(JSON.stringify(ok), err => console.log(JSON.stringify(err))));
+    //   })
+    //   .catch(err => console.log(JSON.stringify(err)));
   }
 
   showToast(name: string) {
