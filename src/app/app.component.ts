@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { EstadosAcademicosPage } from '../pages/estados_academicos/estados_academicos';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
+import { CalendarPage } from '../pages/calendar/calendar';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class MyApp {
     this.pages = [
       { title: 'Estados académicos', component: EstadosAcademicosPage },
       { title: 'List', component: ListPage },
-      { title: 'Salir', component: LoginPage }
+      { title: 'Salir', component: LoginPage },
+      { title: 'Calendario', component: CalendarPage }
     ];
 
   }
