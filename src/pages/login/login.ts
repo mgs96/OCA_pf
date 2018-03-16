@@ -27,12 +27,12 @@ export class LoginPage {
   imageUrl: any;
   idToken: any;
 
-  api1 = 'http://192.168.0.11:3000/mobile/google_auth';
+  api1 = 'http://172.17.68.167:3000/api/v1/google_auth';
   api2 = 'https://rails-api-seed.herokuapp.com/mobile/google_auth';
 
   isLoggedIn: boolean = false;
 
-  constructor(public navCtrl    : NavController, public navParams: NavParams, 
+  constructor(public navCtrl    : NavController, public navParams: NavParams, private http: HttpClient,
               private googlePlus: GooglePlus, private toastCtrl: ToastController) {
   }
 
@@ -80,26 +80,30 @@ export class LoginPage {
 
   login() {
 
-    this.googlePlus.login({})
+    this.googlePlus.login({
+      'webClientId': '779539891707-bqf4tv918qpvopt9abdkm89csma2f8tb.apps.googleusercontent.com',
+      'offline': true,
+    })
       .then(res => {
-        console.log(JSON.stringify(res));
 
         this.showToast(res.givenName);
         this.isLoggedIn = true;
 
-        this.gotoApp();
+        //this.gotoApp();
 
-        // const httpOptions = {
-        //   headers: new HttpHeaders({
-        //     'Access-Control-Allow-Origin': '*'
-        //   }),
-        //   params: {
-        //     'id_token': res.idToken,
-        //     'redirect_uri': ''
-        //   }
-        // };
-        // this.http.post(this.api1, {} , httpOptions)
-        //   .subscribe(ok => console.log(JSON.stringify(ok), err => console.log(JSON.stringify(err))));
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+          }),
+          params: {
+            'id_token': res.idToken,
+            'redirect_uri': ''
+          }
+        };
+
+        this.http.post(this.api1, {} , httpOptions)
+          .subscribe(ok => console.log(JSON.stringify(ok)), err => console.log(err));
       })
       .catch(err => console.log(JSON.stringify(err)));
   }
@@ -117,7 +121,7 @@ export class LoginPage {
 
         this.isLoggedIn = false;
 
-        console.log(res);
+        console.log(JSON.stringify(res));
         
       })
       .catch(err => console.log(err));

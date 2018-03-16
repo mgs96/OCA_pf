@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Calendar } from '@ionic-native/calendar';
-
+import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { EstadosAcademicosPage } from '../pages/estados_academicos/estados_academicos';
@@ -29,6 +29,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
