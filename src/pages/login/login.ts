@@ -83,17 +83,9 @@ export class LoginPage {
     this.googlePlus.login({})
       .then(res => {
         console.log(JSON.stringify(res));
-        this.displayName = res.displayName;
-        this.email = res.email;
-        this.familyName = res.familyName;
-        this.givenName = res.givenName;
-        this.userId = res.userId;
-        this.imageUrl = res.imageUrl;
-        this.idToken = res.idToken;
-
-        this.isLoggedIn = true;
 
         this.showToast(res.givenName);
+        this.isLoggedIn = true;
 
         this.gotoApp();
 
