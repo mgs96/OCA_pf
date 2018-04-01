@@ -10,6 +10,9 @@ import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { CalendarPage } from '../pages/calendar/calendar';
 
+import { LoginfbPage } from "../pages/loginfb/loginfb";
+import { TabsPage } from '../pages/tabs/tabs';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +20,7 @@ import { CalendarPage } from '../pages/calendar/calendar';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = LoginfbPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -28,8 +31,9 @@ export class MyApp {
     this.pages = [
       { title: 'Estados académicos', component: EstadosAcademicosPage },
       { title: 'List', component: ListPage },
+      { title: 'Calendario', component: CalendarPage },
+      { title: 'Chat', component: TabsPage },
       { title: 'Salir', component: LoginPage },
-      { title: 'Calendario', component: CalendarPage }
     ];
 
   }
