@@ -131,4 +131,8 @@ export class LoginPage {
     this.navCtrl.setRoot(EstadosAcademicosPage);
   }
 
+  passwordreset() {
+    this.navCtrl.push('PasswordresetPage');
+  }
+
 }
