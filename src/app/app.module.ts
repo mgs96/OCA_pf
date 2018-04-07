@@ -9,6 +9,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Calendar } from '@ionic-native/calendar';
+import { File } from "@ionic-native/file";
+import { FileChooser } from "@ionic-native/file-chooser";
+import { FilePath } from "@ionic-native/file-path";
 
 //firebase
 import { AngularFireModule } from "angularfire2";
@@ -30,6 +33,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { TabsPageModule } from '../pages/tabs/tabs.module';
 import { UserProvider } from '../providers/user/user';
 import { LoginfbPageModule } from '../pages/loginfb/loginfb.module';
+import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 
 @NgModule({
   declarations: [
@@ -67,7 +71,11 @@ import { LoginfbPageModule } from '../pages/loginfb/loginfb.module';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     AngularFireAuth,
-    UserProvider
+    UserProvider,
+    ImghandlerProvider,
+    File,
+    FileChooser,
+    FilePath
   ]
 })
 export class AppModule {}

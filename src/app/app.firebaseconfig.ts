@@ -3,6 +3,6 @@ export var config = {
   authDomain: "ocapf-197122.firebaseapp.com",
   databaseURL: "https://ocapf-197122.firebaseio.com",
   projectId: "ocapf-197122",
-  storageBucket: "",
+  storageBucket: "ocapf-197122.appspot.com",
   messagingSenderId: "779539891707"
 };
