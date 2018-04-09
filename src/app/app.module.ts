@@ -34,6 +34,7 @@ import { TabsPageModule } from '../pages/tabs/tabs.module';
 import { UserProvider } from '../providers/user/user';
 import { LoginfbPageModule } from '../pages/loginfb/loginfb.module';
 import { ImghandlerProvider } from '../providers/imghandler/imghandler';
+import { RequestsProvider } from '../providers/requests/requests';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { ImghandlerProvider } from '../providers/imghandler/imghandler';
     ImghandlerProvider,
     File,
     FileChooser,
-    FilePath
+    FilePath,
+    RequestsProvider
   ]
 })
 export class AppModule {}
