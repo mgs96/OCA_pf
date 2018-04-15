@@ -9,7 +9,7 @@ import { EstadosAcademicosPage } from '../pages/estados_academicos/estados_acade
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { CalendarPage } from '../pages/calendar/calendar';
-
+import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-academica";
 
 @Component({
   templateUrl: 'app.html'
@@ -29,7 +29,8 @@ export class MyApp {
       { title: 'Estados académicos', component: EstadosAcademicosPage },
       { title: 'List', component: ListPage },
       { title: 'Salir', component: LoginPage },
-      { title: 'Calendario', component: CalendarPage }
+      { title: 'Calendario', component: CalendarPage },
+      { title: 'Asesorías Académicas', component: AsesoriaAcademicaPage }
     ];
 
   }

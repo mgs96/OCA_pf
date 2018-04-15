@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform, ToastController } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 import { CalDetailsPage } from '../cal-details/cal-details';
 
-/**
- * Generated class for the CalendarPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-calendar',
@@ -17,8 +12,10 @@ import { CalDetailsPage } from '../cal-details/cal-details';
 export class CalendarPage {
 
   calendars = [];
+  isAdmin = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private calendar: Calendar, private plt: Platform) {
+  constructor(public navCtrl: NavController, private toast:ToastController, public navParams: NavParams, private calendar: Calendar, private plt: Platform,
+    private event: Events) {
     this.plt.ready().then(() => {
       this.calendar.listCalendars().then(data => {
         this.calendars = data;
@@ -33,13 +30,31 @@ export class CalendarPage {
     console.log(dateStop);
     let options = { calendarId: cal.id, calendarName: cal.name, url: 'http://example.com', firstRemainderMinutes: 15 };
 
-    this.calendar.createEventInteractivelyWithOptions('My new Event', 'Baranquilla', 'Some special notes', dateStart, dateStop, options).then(() => {
+    this.calendar.createEventInteractivelyWithOptions('Nuevo Evento', 'Barranquilla', 'Some special notes', dateStart, dateStop, options).then(() => {
 
     });
   }
 
+  addEvent2(asesoria) {
+    console.log('Welcome', asesoria);
+    const toast = this.toast.create({
+      message: `Hello ${name}`,
+      duration: 3000
+    });
+    toast.present();
+  }
+
   openCal(cal) {
     this.navCtrl.push(CalDetailsPage, { name: cal.name });
+  }
+
+  changeAdmin() {
+    if (this.isAdmin) {
+      this.isAdmin = false;
+    } else {
+      this.isAdmin = true;
+    }
+
   }
 
 }

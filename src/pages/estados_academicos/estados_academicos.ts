@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Events, NavController, ToastController } from 'ionic-angular';
+import { Calendar } from '@ionic-native/calendar';
+
 
 @Component({
   selector: 'page-estados',
@@ -7,8 +9,35 @@ import { NavController } from 'ionic-angular';
 })
 export class EstadosAcademicosPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private event:Events, public toast:ToastController, 
+    private calendar: Calendar) {
+    this.event.subscribe('hello', (asesoria) => {
+      // user and time are the same arguments passed in `events.publish(user, time)`
+      this.addEventXD(calendar, asesoria); //This works.
+    });
+  }
 
+  addEventXD(cal, asesoria) {
+    let dateStart = new Date();
+    let dateStop = new Date(dateStart.setHours(dateStart.getHours() + 4));
+    console.log(dateStart);
+    console.log(dateStop);
+    let options = { calendarId: cal.id, calendarName: cal.name, url: 'http://example.com', firstRemainderMinutes: 15 };
+
+    this.calendar.createEventInteractivelyWithOptions(asesoria.subject, 'Barranquilla', asesoria.place, 
+    asesoria.Inicio, asesoria.Fin, options).then(() => {
+    
+    });
+  }
+
+  addEvent2(asesoria) {
+    console.log('Welcome', asesoria);
+    let name = asesoria.subject;
+    const toast = this.toast.create({
+      message: `Hello ${name}`,
+      duration: 3000
+    });
+    toast.present();
   }
 
 }

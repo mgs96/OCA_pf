@@ -4,15 +4,6 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EstadosAcademicosPage } from '../estados_academicos/estados_academicos';
 
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
