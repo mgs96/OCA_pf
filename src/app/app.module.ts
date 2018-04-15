@@ -35,6 +35,7 @@ import { UserProvider } from '../providers/user/user';
 import { LoginfbPageModule } from '../pages/loginfb/loginfb.module';
 import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { RequestsProvider } from '../providers/requests/requests';
+import { ChatProvider } from '../providers/chat/chat';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { RequestsProvider } from '../providers/requests/requests';
     File,
     FileChooser,
     FilePath,
-    RequestsProvider
+    RequestsProvider,
+    ChatProvider
   ]
 })
 export class AppModule {}
