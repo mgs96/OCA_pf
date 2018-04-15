@@ -46,7 +46,8 @@ import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-acad
     ListPage,
     LoginPage,
     CalendarPage,
-    CalDetailsPage
+    CalDetailsPage,
+    AsesoriaAcademicaPage
   ],
   imports: [
     BrowserModule,
@@ -55,8 +56,6 @@ import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-acad
     AngularFireModule.initializeApp(config),
     TabsPageModule,
     LoginfbPageModule,
-    CalDetailsPage,
-    AsesoriaAcademicaPage
   ],
   bootstrap: [IonicApp],
   entryComponents: [
