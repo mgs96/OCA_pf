@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 <!--
   Generated template for the CalendarPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+=======
+>>>>>>> polo
 <ion-header>
 
   <ion-navbar>
@@ -19,6 +22,7 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let cal of calendars" tappable>
+<<<<<<< HEAD
       <button ion-button icon-only item-start clear (click)="addEvent(cal)">
         <ion-icon name="add"></ion-icon>
       </button>
@@ -30,3 +34,28 @@
     </ion-item>
   </ion-list> 
 </ion-content>
+=======
+
+      <button ion-button (click)="changeAdmin()">
+        Es Administrador: {{isAdmin}}
+      </button>
+
+        <button 
+        ion-button 
+        icon-only 
+        *ngIf="isAdmin"
+        item-start 
+        clear 
+        (click)="addEvent(cal)">
+          <ion-icon name="add"></ion-icon>
+        </button>
+    
+        {{ cal.name }}
+        <p>{{ cal.type }}</p>
+        <button ion-button icon-only item-end clear (click)="openCal(cal)">
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+>>>>>>> polo

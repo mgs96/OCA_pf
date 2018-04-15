@@ -19,7 +19,6 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
-    <preference name="loadUrlTimeoutValue" value="700000" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -86,7 +85,11 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.779539891707-d6ku0rdggo31lr25i661gkldn6g0t8ae" />
     </plugin>
     <plugin name="cordova-plugin-calendar" spec="^5.0.0" />
+<<<<<<< HEAD
     <engine name="android" spec="~7.0.0" />
     <allow-navigation href="http://192.168.56.1:8100" />
     <allow-navigation href="http://172.17.68.167:8100" />
+=======
+    <engine name="android" spec="7.0.0" />
+>>>>>>> polo
 </widget>

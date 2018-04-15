@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Calendar } from '@ionic-native/calendar';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { EstadosAcademicosPage } from '../pages/estados_academicos/estados_academicos';
@@ -11,8 +11,7 @@ import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { CalDetailsPage } from '../pages/cal-details/cal-details';
-
-
+import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-academica";
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -25,11 +24,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     LoginPage,
     CalendarPage,
+<<<<<<< HEAD
     CalDetailsPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+=======
+    CalDetailsPage,
+    AsesoriaAcademicaPage
+  ],
+  imports: [
+    BrowserModule,
+    HttpModule,
+>>>>>>> polo
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -39,7 +47,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ListPage,
     LoginPage,
     CalendarPage,
+<<<<<<< HEAD
     CalDetailsPage
+=======
+    CalDetailsPage,
+    AsesoriaAcademicaPage
+>>>>>>> polo
   ],
   providers: [
     StatusBar,
