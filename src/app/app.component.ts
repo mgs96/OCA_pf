@@ -13,6 +13,7 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { LoginfbPage } from "../pages/loginfb/loginfb";
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-academica";
 
 @Component({
   templateUrl: 'app.html'
@@ -34,6 +35,8 @@ export class MyApp {
       { title: 'Calendario', component: CalendarPage },
       { title: 'Chat', component: TabsPage },
       { title: 'Salir', component: LoginPage },
+      { title: 'Calendario', component: CalendarPage },
+      { title: 'Asesorías Académicas', component: AsesoriaAcademicaPage }
     ];
 
   }

@@ -17,6 +17,7 @@ import { FilePath } from "@ionic-native/file-path";
 import { AngularFireModule } from "angularfire2";
 import { AngularFireAuth } from "angularfire2/auth";
 import { config } from './app.firebaseconfig';
+import { HttpModule } from '@angular/http';
 
 // pages
 import { MyApp } from './app.component';
@@ -36,6 +37,7 @@ import { LoginfbPageModule } from '../pages/loginfb/loginfb.module';
 import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { RequestsProvider } from '../providers/requests/requests';
 import { ChatProvider } from '../providers/chat/chat';
+import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-academica";
 
 @NgModule({
   declarations: [
@@ -44,7 +46,7 @@ import { ChatProvider } from '../providers/chat/chat';
     ListPage,
     LoginPage,
     CalendarPage,
-    CalDetailsPage,
+    CalDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,9 @@ import { ChatProvider } from '../providers/chat/chat';
     IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
     AngularFireModule.initializeApp(config),
     TabsPageModule,
-    LoginfbPageModule
+    LoginfbPageModule,
+    CalDetailsPage,
+    AsesoriaAcademicaPage
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,7 +67,8 @@ import { ChatProvider } from '../providers/chat/chat';
     CalendarPage,
     CalDetailsPage,
     LoginfbPage,
-    TabsPage
+    TabsPage,
+    AsesoriaAcademicaPage
   ],
   providers: [
     StatusBar,

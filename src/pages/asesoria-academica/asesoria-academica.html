@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Asesoría Académica</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngFor="let ase of asesorias2; let i = index">
+    <ion-card-header>
+      Asesorías Disponibles:
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list no-lines>
+        <ion-item>
+          <ion-icon name="home"></ion-icon> Título: {{ ase.subject }}
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="calendar"></ion-icon> Día: {{ ase.day }}
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="time"></ion-icon> Hora: {{ ase.hour }}
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="locate"></ion-icon> Lugar: {{ ase.place }}
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="list"></ion-icon> Tipo: {{ ase.strategy }}
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="briefcase"></ion-icon> Profesor: {{ ase.professor }}
+          <button ion-button item-right (click)="addAgenda(ase)">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </ion-item>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
