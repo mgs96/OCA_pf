@@ -15,13 +15,25 @@ export class AuthProvider {
     console.log('Hello AuthProvider Provider');
   }
 
-  login(credentials: usercreds) {
+  loginWithEmail(credentials: usercreds) {
     var promise = new Promise((resolve, reject) => {
       this.afireauth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(() => {
         resolve(true);
       })
       .catch((err) => {
+        reject(err);
+      });
+    });
+    return promise;
+  }
+
+  loginWithGoogle(credentials) {
+    var promise = new Promise((resolve, reject) => {
+      this.afireauth.auth.signInWithCredential(credentials)
+      .then(() => {
+        resolve(true);
+      }).catch((err) =>{
         reject(err);
       });
     });

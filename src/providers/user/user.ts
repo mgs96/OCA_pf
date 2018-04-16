@@ -20,27 +20,27 @@ export class UserProvider {
 
   adduser(newuser) {
     var promise = new Promise((resolve, reject) => {
-      this.afireauth.auth.createUserWithEmailAndPassword(newuser.email, newuser.password).then(() => {
-        this.afireauth.auth.currentUser.updateProfile({
+      this.afireauth.auth.currentUser.updateProfile({
+        displayName: newuser.displayName,
+        photoURL: newuser.photoURL
+      }).then(() => {
+        this.firedata.child(this.afireauth.auth.currentUser.uid).set({
+          uid: this.afireauth.auth.currentUser.uid,
           displayName: newuser.displayName,
-          photoURL: ''
+          email: newuser.email,
+          creationTime: newuser.metadata.creationTime,
+          lastSignInTime: newuser.metadata.lastSignInTime,
+          phoneNumber: newuser.phoneNumber,
+          photoURL: newuser.photoURL
         }).then(() => {
-          this.firedata.child(this.afireauth.auth.currentUser.uid).set({
-            uid: this.afireauth.auth.currentUser.uid,
-            displayName: newuser.displayName,
-            photoURL: 'give a dummy placeholder url here'
-          }).then(() => {
-            resolve({ success: true });
-            }).catch((err) => {
-              reject(err);
-            });
-          }).catch((err) => {
-            reject(err);
-          });
+          resolve({ success: true });
         }).catch((err) => {
           reject(err);
         });
+      }).catch((err) => {
+        reject(err);
       });
+    });
     return promise;
   }
 

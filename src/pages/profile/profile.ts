@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { UserProvider } from '../../providers/user/user';
 import { ImghandlerProvider } from '../../providers/imghandler/imghandler';
 import firebase from 'firebase';
+import { GooglePlus } from '@ionic-native/google-plus';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the ProfilePage page.
@@ -21,7 +23,9 @@ export class ProfilePage {
   avatar: string;
   displayName: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userservice: UserProvider, public zone: NgZone, public alertCtrl: AlertController, public imghandler: ImghandlerProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public userservice: UserProvider, public zone: NgZone, public alertCtrl: AlertController, 
+    public imghandler: ImghandlerProvider, public googlePlus: GooglePlus) {
   }
 
   ionViewDidLoad() {
@@ -107,7 +111,9 @@ export class ProfilePage {
 
   logout() {
     firebase.auth().signOut().then(() => {
-      this.navCtrl.parent.parent.setRoot('LoginfbPage');
+      this.googlePlus.logout().then(() => {
+        this.navCtrl.parent.parent.setRoot(LoginPage);
+      });
     });
   }
 }
