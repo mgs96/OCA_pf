@@ -21,7 +21,7 @@ import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-acad
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginfbPage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 

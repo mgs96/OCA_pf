@@ -27,7 +27,7 @@ export class LoginfbPage {
   }
 
   signin() {
-    this._auth.login(this.credentials).then((res: any) => {
+    this._auth.loginWithEmail(this.credentials).then((res: any) => {
       if (!res.code) {
         this.navCtrl.setRoot('TabsPage');
       } else {

@@ -3,6 +3,9 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EstadosAcademicosPage } from '../estados_academicos/estados_academicos';
+import firebase from 'firebase';
+import { AuthProvider } from '../../providers/auth/auth';
+import { UserProvider } from '../../providers/user/user';
 
 @Component({
   selector: 'page-login',
@@ -23,40 +26,20 @@ export class LoginPage {
 
   isLoggedIn: boolean = false;
 
-  constructor(public navCtrl    : NavController, public navParams: NavParams, 
-              private googlePlus: GooglePlus, private toastCtrl: ToastController) {
+  constructor(public navCtrl    : NavController, public navParams: NavParams, private http: HttpClient, 
+    private googlePlus: GooglePlus, private toastCtrl: ToastController, private authService: AuthProvider,
+    private userProvider: UserProvider) {
+      
+      firebase.auth().onAuthStateChanged(user => {
+        if(user) {
+          console.log("onAuthStateChanged");
+          console.log(user);
+        } 
+      });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
-    // this.googlePlus.trySilentLogin({})
-    //   .then(res => {
-    //     console.log(JSON.stringify(res));
-    //     this.displayName = res.displayName;
-    //     this.email = res.email;
-    //     this.familyName = res.familyName;
-    //     this.givenName = res.givenName;
-    //     this.userId = res.userId;
-    //     this.imageUrl = res.imageUrl;
-    //     this.idToken = res.idToken;
-
-    //     this.isLoggedIn = true;
-
-    //     this.gotoApp();
-
-    //     // const httpOptions = {
-    //     //   headers: new HttpHeaders({
-    //     //     'Access-Control-Allow-Origin': '*'
-    //     //   }),
-    //     //   params: {
-    //     //     'id_token': res.idToken,
-    //     //     'redirect_uri': ''
-    //     //   }
-    //     // };
-    //     // this.http.post(this.api1, {} , httpOptions)
-    //     //   .subscribe(ok => console.log(JSON.stringify(ok), err => console.log(JSON.stringify(err))));
-    //   })
-    //   .catch(err => console.log(JSON.stringify(err)));
   }
 
   showToast(name: string) {
@@ -70,56 +53,25 @@ export class LoginPage {
   }
 
   login() {
-
-    this.googlePlus.login({})
-      .then(res => {
-        console.log(JSON.stringify(res));
-        this.displayName = res.displayName;
-        this.email = res.email;
-        this.familyName = res.familyName;
-        this.givenName = res.givenName;
-        this.userId = res.userId;
-        this.imageUrl = res.imageUrl;
-        this.idToken = res.idToken;
-
-        this.isLoggedIn = true;
-
-        this.showToast(res.givenName);
-
+    this.googlePlus.login({
+      'webClientId': '779539891707-7f8mv198pfnhh1o9u1lsel00u5qk6k3l.apps.googleusercontent.com',
+      'offline': true,
+    }).then(res => {
+      if(/^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(uninorte\.edu)\.com$/.test(res.email)) {
+        console.log("SOY UNINORTE");
+      } else {
+        console.log("NO SOY UNINORTE")
+      }
+      const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
+      this.authService.loginWithGoogle(googleCredential).then(res => {
+        this.userProvider.getuserdetails().then((userDetails) => {
+          if (userDetails == null) {
+            this.userProvider.adduser(firebase.auth().currentUser);
+          }
+        });
         this.gotoApp();
-
-        // const httpOptions = {
-        //   headers: new HttpHeaders({
-        //     'Access-Control-Allow-Origin': '*'
-        //   }),
-        //   params: {
-        //     'id_token': res.idToken,
-        //     'redirect_uri': ''
-        //   }
-        // };
-        // this.http.post(this.api1, {} , httpOptions)
-        //   .subscribe(ok => console.log(JSON.stringify(ok), err => console.log(JSON.stringify(err))));
-      })
-      .catch(err => console.log(JSON.stringify(err)));
-  }
-
-  logout() {
-    this.googlePlus.logout()
-      .then(res => {
-        console.log(res);
-        this.displayName = "";
-        this.email = "";
-        this.familyName = "";
-        this.givenName = "";
-        this.userId = "";
-        this.imageUrl = "";
-
-        this.isLoggedIn = false;
-
-        console.log(res);
-        
-      })
-      .catch(err => console.log(err));
+      }).catch((error) => console.log(error));
+    }).catch((error) => console.log(error));
   }
 
   gotoApp() {
