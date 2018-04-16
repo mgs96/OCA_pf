@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color="hcolor">
+  <ion-navbar color="primary">
     <ion-title>{{ buddy.displayName }}</ion-title>
   </ion-navbar>
 
@@ -35,11 +35,11 @@
 </ion-content>
 
 <ion-footer ion-fixed>
-  <ion-toolbar class="no-border" color="white">
+  <ion-toolbar class="no-border" color="light">
     <ion-input [(ngModel)]="newmessage" placeholder="Escribe tu mensaje ..."></ion-input>
     <ion-buttons end>
       <button ion-button (click)="addmessage()">
-        <ion-icon name="send" color="primary"></ion-icon>
+        <ion-icon name="send" color="secondary"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>

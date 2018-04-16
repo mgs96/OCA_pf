@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Bienvenido!</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Iniciar sesión</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,23 +20,12 @@
       <img src="assets/imgs/icon.png">
   </ion-avatar>
 
-  <div *ngIf="isLoggedIn; else loginTemplate">
-    <button ion-button block color="danger" (click)="logout()">Logout From Google</button>
-  </div>
-
-  <ng-template #loginTemplate>
-    <button ion-button block color="danger" (click)="login()" margin-vertical>
-      <ion-icon ios="logo-google" md="logo-google"></ion-icon>
-  
-      <ion-grid>
-        <ion-row>
-          <ion-col col-12>Iniciar sesión con Google</ion-col>
-        </ion-row>
-      </ion-grid>
-    </button>
-    
-    <!-- Remover en la versión final -->
-    <button ion-button block (click)="gotoApp()">Atajo</button>
-    <!--  -->
-  </ng-template>
+  <button ion-button block color="danger" (click)="login()" margin-vertical>
+    <ion-icon ios="logo-google" md="logo-google"></ion-icon>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>Iniciar sesión con Google</ion-col>
+      </ion-row>
+    </ion-grid>
+  </button>
 </ion-content>
