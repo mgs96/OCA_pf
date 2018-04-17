@@ -18,6 +18,7 @@ import { AngularFireModule } from "angularfire2";
 import { AngularFireAuth } from "angularfire2/auth";
 import { config } from './app.firebaseconfig';
 import { HttpModule } from '@angular/http';
+import { Firebase } from '@ionic-native/firebase';
 
 // pages
 import { MyApp } from './app.component';
@@ -56,6 +57,7 @@ import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-acad
     AngularFireModule.initializeApp(config),
     TabsPageModule,
     LoginfbPageModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -83,7 +85,8 @@ import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-acad
     FileChooser,
     FilePath,
     RequestsProvider,
-    ChatProvider
+    ChatProvider,
+    Firebase
   ]
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 // components
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -14,18 +14,21 @@ import { LoginfbPage } from "../pages/loginfb/loginfb";
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-academica";
+import { Firebase } from '@ionic-native/firebase';
+import { UserProvider } from '../providers/user/user';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
+  @ViewChild('myNav') navCtrl: NavController;
 
   rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private firebase: Firebase, private userProvider: UserProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -39,6 +42,10 @@ export class MyApp {
       { title: 'Asesorías Académicas', component: AsesoriaAcademicaPage }
     ];
 
+    firebase.onNotificationOpen().subscribe(data => {
+      this.navCtrl.setRoot('TabsPage');
+    });
+
   }
 
   initializeApp() {
@@ -47,6 +54,10 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.backgroundColorByHexString("#00919A");
       this.splashScreen.hide();
+
+      this.firebase.getToken().then(token => {
+        this.userProvider.initializeToken(token);
+      });
     });
   }
 

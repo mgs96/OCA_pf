@@ -13,9 +13,14 @@ import firebase from 'firebase';
 export class UserProvider {
 
   firedata = database().ref('/users/');
+  token: string;
 
   constructor(public afireauth: AngularFireAuth) {
     console.log('Hello UserProvider Provider');
+  }
+
+  initializeToken(token: string) {
+    this.token = token;
   }
 
   adduser(newuser) {
@@ -31,7 +36,8 @@ export class UserProvider {
           creationTime: newuser.metadata.creationTime,
           lastSignInTime: newuser.metadata.lastSignInTime,
           phoneNumber: newuser.phoneNumber,
-          photoURL: newuser.photoURL
+          photoURL: newuser.photoURL,
+          token: this.token
         }).then(() => {
           resolve({ success: true });
         }).catch((err) => {

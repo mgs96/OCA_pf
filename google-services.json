@@ -1,0 +1,66 @@
+{
+  "project_info": {
+    "project_number": "779539891707",
+    "firebase_url": "https://ocapf-197122.firebaseio.com",
+    "project_id": "ocapf-197122",
+    "storage_bucket": "ocapf-197122.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779539891707:android:c80448bda5d6b814",
+        "android_client_info": {
+          "package_name": "com.uninorte.ocapf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779539891707-bp81jpt1mhe3rdo6ev11ceo5a1tuur97.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.uninorte.ocapf",
+            "certificate_hash": "ce337fa3c02783fbfe9fac4042c11596adb01353"
+          }
+        },
+        {
+          "client_id": "779539891707-7f8mv198pfnhh1o9u1lsel00u5qk6k3l.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "779539891707-bqf4tv918qpvopt9abdkm89csma2f8tb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhOw9I8clHVsOczazgjcuEaZZL986zP2E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779539891707-d6ku0rdggo31lr25i661gkldn6g0t8ae.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.uninorte.ocapf"
+              }
+            },
+            {
+              "client_id": "779539891707-7f8mv198pfnhh1o9u1lsel00u5qk6k3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
