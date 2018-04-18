@@ -29,17 +29,7 @@ export class LoginPage {
   constructor(public navCtrl    : NavController, public navParams: NavParams, private http: HttpClient, 
     private googlePlus: GooglePlus, private toastCtrl: ToastController, private authService: AuthProvider,
     private userProvider: UserProvider) {
-      
-      firebase.auth().onAuthStateChanged(user => {
-        if(user) {
-          console.log("onAuthStateChanged");
-          console.log(user);
-        } 
-      });
-  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
   }
 
   showToast(name: string) {

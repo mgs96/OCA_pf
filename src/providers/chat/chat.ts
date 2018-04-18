@@ -21,8 +21,6 @@ export class ChatProvider {
 
   initializebuddy(buddy) {
     this.buddy = buddy;
-    console.log("Initialize buddy in chatprovider");
-    console.log(buddy);
   }
 
   addnewmessage(msg) {
@@ -30,11 +28,13 @@ export class ChatProvider {
       var promise = new Promise((resolve, reject) => {
         this.firebuddychats.child(firebase.auth().currentUser.uid).child(this.buddy.uid).push().set({
           sentBy: firebase.auth().currentUser.uid,
+          sentTo: this.buddy.uid,
           message: msg,
           timestamp: firebase.database.ServerValue.TIMESTAMP
         }).then(() => {
           this.firebuddychats.child(this.buddy.uid).child(firebase.auth().currentUser.uid).push().set({
             sentBy: firebase.auth().currentUser.uid,
+            sentTo: this.buddy.uid,
             message: msg,
             timestamp: firebase.database.ServerValue.TIMESTAMP
           }).then(() => {

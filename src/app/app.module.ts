@@ -39,6 +39,7 @@ import { ImghandlerProvider } from '../providers/imghandler/imghandler';
 import { RequestsProvider } from '../providers/requests/requests';
 import { ChatProvider } from '../providers/chat/chat';
 import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-academica";
+import { NotificationProvider } from '../providers/notification/notification';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-acad
     FilePath,
     RequestsProvider,
     ChatProvider,
-    Firebase
+    Firebase,
+    NotificationProvider
   ]
 })
 export class AppModule {}

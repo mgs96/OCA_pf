@@ -96,4 +96,5 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <plugin name="cordova-plugin-firebase" spec="^1.0.0" />
     <engine name="android" spec="7.0.0" />
+    <allow-navigation href="http://172.17.68.172:8100" />
 </widget>

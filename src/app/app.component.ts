@@ -1,6 +1,6 @@
 // components
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, NavController } from 'ionic-angular';
+import { Nav, Platform, NavController, ViewController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -16,6 +16,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-academica";
 import { Firebase } from '@ionic-native/firebase';
 import { UserProvider } from '../providers/user/user';
+import firebase from 'firebase';
+import { ChatProvider } from '../providers/chat/chat';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,11 +26,11 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   @ViewChild('myNav') navCtrl: NavController;
 
-  rootPage: any = LoginPage;
+  rootPage: any;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private firebase: Firebase, private userProvider: UserProvider) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private firebaseCloudMessage: Firebase, private userProvider: UserProvider, private chatProvider: ChatProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -42,8 +44,11 @@ export class MyApp {
       { title: 'Asesorías Académicas', component: AsesoriaAcademicaPage }
     ];
 
-    firebase.onNotificationOpen().subscribe(data => {
-      this.navCtrl.setRoot('TabsPage');
+    firebaseCloudMessage.onNotificationOpen().subscribe(data => {
+      //this.navCtrl.setRoot('TabsPage');
+      chatProvider.initializebuddy(JSON.parse(data.user));
+      //this.navCtrl.push('BuddychatPage');
+      this.navCtrl.setPages([{page: 'TabsPage'}, {page: 'BuddychatPage'}], {animate: true});
     });
 
   }
@@ -55,8 +60,16 @@ export class MyApp {
       this.statusBar.backgroundColorByHexString("#00919A");
       this.splashScreen.hide();
 
-      this.firebase.getToken().then(token => {
+      this.firebaseCloudMessage.getToken().then(token => {
         this.userProvider.initializeToken(token);
+      });
+
+      firebase.auth().onAuthStateChanged(user => {
+        if(user) {
+          this.rootPage = EstadosAcademicosPage;
+        } else {
+          this.rootPage = LoginPage;
+        }
       });
     });
   }
