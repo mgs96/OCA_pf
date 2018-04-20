@@ -45,10 +45,10 @@ export class MyApp {
     ];
 
     firebaseCloudMessage.onNotificationOpen().subscribe(data => {
-      //this.navCtrl.setRoot('TabsPage');
-      chatProvider.initializebuddy(JSON.parse(data.user));
-      //this.navCtrl.push('BuddychatPage');
-      this.navCtrl.setPages([{page: 'TabsPage'}, {page: 'BuddychatPage'}], {animate: true});
+      if (data.tap) {
+        chatProvider.initializebuddy(JSON.parse(data.user));
+        this.navCtrl.setPages([{page: 'TabsPage'}, {page: 'BuddychatPage'}], {animate: true});
+      }
     });
 
   }

@@ -58,6 +58,7 @@ export class LoginPage {
           if (userDetails == null) {
             this.userProvider.adduser(firebase.auth().currentUser);
           }
+          this.userProvider.updateToken();
         });
         this.gotoApp();
       }).catch((error) => console.log(error));
