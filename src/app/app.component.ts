@@ -1,6 +1,6 @@
 // components
 import { Component, ViewChild, NgZone } from "@angular/core";
-import { Nav, Platform, NavController, ViewController, MenuController } from "ionic-angular";
+import { Nav, Platform, NavController, ViewController, MenuController, ToastController } from "ionic-angular";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { GooglePlus } from "@ionic-native/google-plus";
@@ -42,7 +42,8 @@ export class MyApp {
     private chatProvider: ChatProvider,
     public zone: NgZone,
     private googlePlus: GooglePlus,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private toastCtrl: ToastController
   ) {
     this.initializeApp();
 
@@ -87,6 +88,15 @@ export class MyApp {
                   [{ page: "TabsPage" }, { page: "BuddychatPage" }],
                   { animate: true }
                 );
+              } else {
+                if (this.navCtrl.getActive().name != "TabsPage") {
+                  const toast = this.toastCtrl.create({
+                    message: `Tienes un nuevo mensaje de ${ data.user.displayName }`,
+                    duration: 2000,
+                    position: 'bottom'
+                  });
+                  toast.present();              
+                }
               }
             });
           });
