@@ -3,7 +3,7 @@
     <name>Academic Follow Up</name>
     <description>Aplicación movil para el CREE, realizada en a manera de proyecto final.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://10.20.41.161:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -101,6 +101,6 @@
     <plugin name="cordova-android-play-services-gradle-release" spec="^1.4.1">
         <variable name="PLAY_SERVICES_VERSION" value="15.+" />
     </plugin>
-    <engine name="android" spec="7.0.0" />
     <allow-navigation href="http://10.20.41.161:8100" />
+    <engine name="android" spec="7.0.0" />
 </widget>

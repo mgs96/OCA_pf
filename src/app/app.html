@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu id="myMenu" [content]="content">
   <ion-header>
     <ion-toolbar padding color="primary">
       <div class="profile-image">
@@ -19,7 +19,7 @@
     </ion-list>
   </ion-content>
 
-  <ion-footer ion-button full icon-left color="danger" class="no-margin-bottom">
+  <ion-footer ion-button full icon-left color="danger" class="no-margin-bottom" (click)="logout()">
     <ion-icon ios="ios-power" md="md-power"></ion-icon>
     Salir
   </ion-footer>

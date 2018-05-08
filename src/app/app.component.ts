@@ -1,8 +1,9 @@
 // components
 import { Component, ViewChild, NgZone } from "@angular/core";
-import { Nav, Platform, NavController, ViewController } from "ionic-angular";
+import { Nav, Platform, NavController, ViewController, MenuController } from "ionic-angular";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
+import { GooglePlus } from "@ionic-native/google-plus";
 
 // pages
 import { EstadosAcademicosPage } from "../pages/estados_academicos/estados_academicos";
@@ -39,19 +40,19 @@ export class MyApp {
     private firebaseCloudMessage: Firebase,
     private userProvider: UserProvider,
     private chatProvider: ChatProvider,
-    public zone: NgZone
+    public zone: NgZone,
+    private googlePlus: GooglePlus,
+    private menuCtrl: MenuController
   ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: "Estados académicos", component: EstadosAcademicosPage },
-      { title: "List", component: ListPage },
       { title: "Calendario", component: CalendarPage },
       { title: "Chat", component: TabsPage },
-      { title: "Salir", component: LoginPage },
       { title: "Calendario", component: CalendarPage },
-      { title: "Asesorías Académicas", component: AsesoriaAcademicaPage }
+      { title: "Apoyos Académicos", component: AsesoriaAcademicaPage }
     ];
   }
 
@@ -69,8 +70,14 @@ export class MyApp {
 
         this.verifyLogin()
           .then(
-            ok => (this.rootPage = EstadosAcademicosPage),
-            notOk => (this.rootPage = LoginPage)
+            ok => {
+              this.rootPage = EstadosAcademicosPage;
+              this.menuCtrl.enable(true, 'myMenu');
+            },
+            notOk => {
+              this.rootPage = LoginPage;
+              this.menuCtrl.enable(false, 'myMenu');
+            }
           )
           .then(() => {
             this.firebaseCloudMessage.onNotificationOpen().subscribe(data => {
@@ -113,7 +120,8 @@ export class MyApp {
   logout() {
     firebase.auth().signOut().then(() => {
       this.googlePlus.logout().then(() => {
-        this.navCtrl.parent.parent.setRoot(LoginPage);
+        this.navCtrl.setRoot(LoginPage);
+        this.menuCtrl.enable(false, 'myMenu');
       });
     });
   }

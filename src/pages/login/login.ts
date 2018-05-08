@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController, NavParams, ToastController } from "ionic-angular";
+import { NavController, NavParams, ToastController, MenuController } from "ionic-angular";
 import { GooglePlus } from "@ionic-native/google-plus";
 import { EstadosAcademicosPage } from "../estados_academicos/estados_academicos";
 import firebase from "firebase";
@@ -17,7 +17,8 @@ export class LoginPage {
     private googlePlus: GooglePlus,
     private toastCtrl: ToastController,
     private authService: AuthProvider,
-    private userProvider: UserProvider
+    private userProvider: UserProvider,
+    private menuCtrl: MenuController
   ) {}
 
   showToast(name: string) {
@@ -51,6 +52,7 @@ export class LoginPage {
               }
               this.userProvider.updateToken();
             });
+            this.menuCtrl.enable(true, 'myMenu');
             this.gotoApp();
           })
           .catch(error => console.log(error));
