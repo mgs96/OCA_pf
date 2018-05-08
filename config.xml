@@ -102,4 +102,5 @@
         <variable name="PLAY_SERVICES_VERSION" value="15.+" />
     </plugin>
     <engine name="android" spec="7.0.0" />
+    <allow-navigation href="http://10.20.41.161:8100" />
 </widget>

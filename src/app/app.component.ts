@@ -1,5 +1,5 @@
 // components
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild, NgZone } from "@angular/core";
 import { Nav, Platform, NavController, ViewController } from "ionic-angular";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
@@ -27,6 +27,8 @@ export class MyApp {
   @ViewChild("myNav") navCtrl: NavController;
 
   rootPage: any;
+  avatar: string;
+  displayName: string;
 
   pages: Array<{ title: string; component: any }>;
 
@@ -36,7 +38,8 @@ export class MyApp {
     public splashScreen: SplashScreen,
     private firebaseCloudMessage: Firebase,
     private userProvider: UserProvider,
-    private chatProvider: ChatProvider
+    private chatProvider: ChatProvider,
+    public zone: NgZone
   ) {
     this.initializeApp();
 
@@ -96,6 +99,8 @@ export class MyApp {
     var promise = new Promise((resolve, reject) => {
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
+          this.displayName = user.displayName;
+          this.avatar = user.photoURL;
           resolve(true);
         } else {
           reject(true);
@@ -103,5 +108,22 @@ export class MyApp {
       });
     });
     return promise;
+  }
+
+  logout() {
+    firebase.auth().signOut().then(() => {
+      this.googlePlus.logout().then(() => {
+        this.navCtrl.parent.parent.setRoot(LoginPage);
+      });
+    });
+  }
+
+  loaduserdetails(): any {
+    this.userProvider.getuserdetails().then((res: any) => {
+      this.displayName = res.displayName;
+      this.zone.run(() => {
+        this.avatar = res.photoURL;
+      });
+    });
   }
 }
