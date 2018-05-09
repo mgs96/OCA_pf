@@ -1,18 +1,28 @@
-<ion-menu color="primary" [content]="content">
+<ion-menu id="myMenu" [content]="content">
   <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>Menu</ion-title>
+    <ion-toolbar padding color="primary">
+      <div class="profile-image">
+        <img src="{{avatar}}">
+      </div>
+      <div>
+        <h2 class="display-name">{{displayName}}</h2>
+      </div>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content color="primary">
-    <ion-list color="primary">
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" color="primary">
-        {{p.title}}
+  <ion-content>
+    <ion-list no-lines>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon item-start name="home"></ion-icon>
+        <h2>{{p.title}}</h2>
       </button>
     </ion-list>
   </ion-content>
 
+  <ion-footer ion-button full icon-left color="danger" class="no-margin-bottom" (click)="logout()">
+    <ion-icon ios="ios-power" md="md-power"></ion-icon>
+    Salir
+  </ion-footer>
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
