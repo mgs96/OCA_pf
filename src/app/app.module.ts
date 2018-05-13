@@ -40,6 +40,7 @@ import { RequestsProvider } from '../providers/requests/requests';
 import { ChatProvider } from '../providers/chat/chat';
 import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-academica";
 import { NotificationProvider } from '../providers/notification/notification';
+import { StatusProvider } from '../providers/status/status';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { NotificationProvider } from '../providers/notification/notification';
     RequestsProvider,
     ChatProvider,
     Firebase,
-    NotificationProvider
+    NotificationProvider,
+    StatusProvider
   ]
 })
 export class AppModule {}
