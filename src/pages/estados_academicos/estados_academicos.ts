@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Events, NavController, ToastController } from 'ionic-angular';
+import { Events, NavController, ToastController, NavParams } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 import { StatusProvider } from '../../providers/status/status';
 
@@ -10,18 +10,18 @@ import { StatusProvider } from '../../providers/status/status';
 })
 export class EstadosAcademicosPage {
 
-  data;
+  img;
 
   constructor(
     public navCtrl: NavController, 
     private event:Events, 
     public toast:ToastController, 
     private calendar: Calendar,
-    private statusService: StatusProvider
+    private statusService: StatusProvider,
+    private navParams: NavParams
   ) {
-    statusService.loadStatuses().then((ok: any) => {
-      this.data = ok.data;
-    });
+    this.img = navParams.data;
+    
     this.event.subscribe('hello', (asesoria) => {
       // user and time are the same arguments passed in `events.publish(user, time)`
       this.addEventXD(calendar, asesoria); //This works.
