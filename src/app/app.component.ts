@@ -20,6 +20,7 @@ import { UserProvider } from "../providers/user/user";
 import firebase from "firebase";
 import { ChatProvider } from "../providers/chat/chat";
 import { ChatsPage } from "../pages/chats/chats";
+import { StatusProvider } from '../providers/status/status';
 
 @Component({
   templateUrl: "app.html"
@@ -31,6 +32,8 @@ export class MyApp {
   rootPage: any;
   avatar: string;
   displayName: string;
+  public tabs = [];
+  data;
 
   pages: Array<{ title: string; component: any }>;
 
@@ -44,7 +47,8 @@ export class MyApp {
     public zone: NgZone,
     private googlePlus: GooglePlus,
     private menuCtrl: MenuController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private statusProvider: StatusProvider
   ) {
     this.initializeApp();
 
@@ -65,6 +69,14 @@ export class MyApp {
         // Okay, so the platform is ready and our plugins are available.
         // Here you can do any higher level native things you might need.
         this.statusBar.backgroundColorByHexString("#00919A");
+
+        this.statusProvider.loadStatuses().then((ok: any) => {
+          this.data = ok.data;
+          this.data.forEach(element => {
+            let tab = { title: element.name, root: EstadosAcademicosPage, rootParams: element.value };
+            this.tabs.push(tab);
+          });
+        }); 
 
         this.firebaseCloudMessage.getToken().then(token => {
           this.userProvider.initializeToken(token);
@@ -110,7 +122,7 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(page.component, { data: this.tabs });
   }
 
   verifyLogin() {

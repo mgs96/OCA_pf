@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { StatusProvider } from '../../providers/status/status';
 import { EstadosAcademicosPage } from '../estados_academicos/estados_academicos';
 import { Tabs } from 'ionic-angular/navigation/nav-interfaces';
 
@@ -19,22 +18,14 @@ import { Tabs } from 'ionic-angular/navigation/nav-interfaces';
 export class TabsPage {
 
   data;
-  public tabs = [];
   tabsLoaded = false;
+  tabs = [];
 
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams,
-    private statusProvider: StatusProvider
+    public navParams: NavParams
   ) {
-    statusProvider.loadStatuses().then((ok: any) => {
-      this.data = ok.data;
-      this.data.forEach(element => {
-        let tab = { title: element.name, root: EstadosAcademicosPage, rootParams: element.value };
-        this.tabs.push(tab);
-        this.tabsLoaded = true;
-      });
-    }); 
+    this.tabs = this.navParams.get('data');
   }
 
   ionViewDidLoad() {
