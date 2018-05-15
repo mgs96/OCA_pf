@@ -21,6 +21,7 @@ import firebase from "firebase";
 import { ChatProvider } from "../providers/chat/chat";
 import { ChatsPage } from "../pages/chats/chats";
 import { StatusProvider } from '../providers/status/status';
+import { HomePage } from "../pages/home/home";
 
 @Component({
   templateUrl: "app.html"
@@ -54,10 +55,10 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
+      { title: "Nuestras Redes", component: HomePage },
       { title: "Estados académicos", component: TabsPage },
       { title: "Calendario", component: CalendarPage },
       { title: "Chat", component: ChatsPage },
-      { title: "Calendario", component: CalendarPage },
       { title: "Apoyos Académicos", component: AsesoriaAcademicaPage }
     ];
   }
@@ -70,14 +71,6 @@ export class MyApp {
         // Here you can do any higher level native things you might need.
         this.statusBar.backgroundColorByHexString("#00919A");
 
-        this.statusProvider.loadStatuses().then((ok: any) => {
-          this.data = ok.data;
-          this.data.forEach(element => {
-            let tab = { title: element.name, root: EstadosAcademicosPage, rootParams: element.value };
-            this.tabs.push(tab);
-          });
-        }); 
-
         this.firebaseCloudMessage.getToken().then(token => {
           this.userProvider.initializeToken(token);
         });
@@ -85,8 +78,15 @@ export class MyApp {
         this.verifyLogin()
           .then(
             ok => {
-              this.rootPage = TabsPage;
-              this.menuCtrl.enable(true, 'myMenu');
+              this.statusProvider.loadStatuses().then((ok: any) => {
+                this.data = ok.data;
+                this.data.forEach(element => {
+                  let tab = { title: element.name, root: EstadosAcademicosPage, rootParams: element.value };
+                  this.tabs.push(tab);
+                });
+                this.rootPage = HomePage;
+                this.menuCtrl.enable(true, 'myMenu');
+              }); 
             },
             notOk => {
               this.rootPage = LoginPage;
@@ -97,10 +97,11 @@ export class MyApp {
             this.firebaseCloudMessage.onNotificationOpen().subscribe(data => {
               if (data.tap) {
                 this.chatProvider.initializebuddy(JSON.parse(data.user));
-                this.navCtrl.setPages(
-                  [{ page: "TabsPage" }, { page: "BuddychatPage" }],
-                  { animate: true }
-                );
+                this.navCtrl.setRoot(ChatsPage);
+                // this.navCtrl.setPages(
+                //   [{ page: "TabsPage" }, { page: "BuddychatPage" }],
+                //   { animate: true }
+                // );
               } else {
                 if (this.navCtrl.getActive().name != "TabsPage") {
                   const toast = this.toastCtrl.create({

@@ -28,6 +28,7 @@ import { LoginPage } from '../pages/login/login';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { CalDetailsPage } from '../pages/cal-details/cal-details';
 import { LoginfbPage } from '../pages/loginfb/loginfb';
+import { ChatsPage } from '../pages/chats/chats';
 
 // providers
 import { AuthProvider } from '../providers/auth/auth';
@@ -42,6 +43,7 @@ import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-acad
 import { NotificationProvider } from '../providers/notification/notification';
 import { StatusProvider } from '../providers/status/status';
 import { SafeImagePipe } from '../pipes/safe-image/safe-image';
+import { HomePage } from '../pages/home/home';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { SafeImagePipe } from '../pipes/safe-image/safe-image';
     CalendarPage,
     CalDetailsPage,
     AsesoriaAcademicaPage,
-    SafeImagePipe
+    SafeImagePipe,
+    ChatsPage,
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -74,7 +78,9 @@ import { SafeImagePipe } from '../pipes/safe-image/safe-image';
     CalDetailsPage,
     LoginfbPage,
     TabsPage,
-    AsesoriaAcademicaPage
+    AsesoriaAcademicaPage,
+    ChatsPage,
+    HomePage
   ],
   providers: [
     StatusBar,

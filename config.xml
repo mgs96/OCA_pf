@@ -3,7 +3,7 @@
     <name>Academic Follow Up</name>
     <description>Aplicación movil para el CREE, realizada en a manera de proyecto final.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://10.20.41.85:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

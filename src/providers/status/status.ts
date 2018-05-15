@@ -10,6 +10,7 @@ import firebase from 'firebase';
 export class StatusProvider {
 
   private statuses = firebase.database().ref('/status');
+  public tabs = [];
 
   constructor() {
     
