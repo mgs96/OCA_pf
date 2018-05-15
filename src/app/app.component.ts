@@ -22,6 +22,7 @@ import { ChatProvider } from "../providers/chat/chat";
 import { ChatsPage } from "../pages/chats/chats";
 import { StatusProvider } from '../providers/status/status';
 import { HomePage } from "../pages/home/home";
+import { CuestionariosPage } from "../pages/cuestionarios/cuestionarios";
 
 @Component({
   templateUrl: "app.html"
@@ -59,7 +60,8 @@ export class MyApp {
       { title: "Estados académicos", component: TabsPage },
       { title: "Calendario", component: CalendarPage },
       { title: "Chat", component: ChatsPage },
-      { title: "Apoyos Académicos", component: AsesoriaAcademicaPage }
+      { title: "Apoyos Académicos", component: AsesoriaAcademicaPage },
+      { title: "Cuestionarios", component: CuestionariosPage }
     ];
   }
 

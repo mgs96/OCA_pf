@@ -44,6 +44,10 @@ import { NotificationProvider } from '../providers/notification/notification';
 import { StatusProvider } from '../providers/status/status';
 import { SafeImagePipe } from '../pipes/safe-image/safe-image';
 import { HomePage } from '../pages/home/home';
+import { CuestionariosPage } from '../pages/cuestionarios/cuestionarios';
+import { PreTestPage } from '../pages/pre-test/pre-test';
+import { ProsTestPage } from '../pages/pros-test/pros-test';
+import { InAppBrowser } from '@ionic-native/in-app-browser'
 
 @NgModule({
   declarations: [
@@ -56,7 +60,10 @@ import { HomePage } from '../pages/home/home';
     AsesoriaAcademicaPage,
     SafeImagePipe,
     ChatsPage,
-    HomePage
+    HomePage,
+    CuestionariosPage,
+    PreTestPage,
+    ProsTestPage
   ],
   imports: [
     BrowserModule,
@@ -65,8 +72,7 @@ import { HomePage } from '../pages/home/home';
     AngularFireModule.initializeApp(config),
     TabsPageModule,
     LoginfbPageModule,
-    HttpModule,
-    
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -80,7 +86,10 @@ import { HomePage } from '../pages/home/home';
     TabsPage,
     AsesoriaAcademicaPage,
     ChatsPage,
-    HomePage
+    HomePage,
+    CuestionariosPage,
+    PreTestPage,
+    ProsTestPage
   ],
   providers: [
     StatusBar,
@@ -99,7 +108,8 @@ import { HomePage } from '../pages/home/home';
     ChatProvider,
     Firebase,
     NotificationProvider,
-    StatusProvider
+    StatusProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}
