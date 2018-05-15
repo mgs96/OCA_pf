@@ -97,14 +97,6 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <plugin name="cordova-plugin-firebase" spec="^1.0.0" />
     <allow-navigation href="http://172.17.68.172:8100" />
-<<<<<<< HEAD
-=======
-    <allow-navigation href="http://192.168.0.11:8100" />
-    <plugin name="cordova-android-play-services-gradle-release" spec="^1.4.1">
-        <variable name="PLAY_SERVICES_VERSION" value="15.+" />
-    </plugin>
-    <allow-navigation href="http://10.20.41.161:8100" />
->>>>>>> 8251f32412c8a8d0bbf8991a6501f3d7813a32a9
-    <engine name="android" spec="7.0.0" />
     <allow-navigation href="http://192.168.1.10:8100" />
+    <engine name="android" spec="7.0.0" />
 </widget>

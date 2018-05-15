@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { StatusProvider } from '../../providers/status/status';
+import { EstadosAcademicosPage } from '../estados_academicos/estados_academicos';
+import { Tabs } from 'ionic-angular/navigation/nav-interfaces';
 
 /**
  * Generated class for the TabsPage page.
@@ -15,14 +18,26 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TabsPage {
 
-  tab1: string = "ChatsPage";
-  tab2: string = "ProfilePage";
+  data;
+  public tabs = [];
+  tabsLoaded = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private statusProvider: StatusProvider
+  ) {
+    statusProvider.loadStatuses().then((ok: any) => {
+      this.data = ok.data;
+      this.data.forEach(element => {
+        let tab = { title: element.name, root: EstadosAcademicosPage, rootParams: element.value };
+        this.tabs.push(tab);
+        this.tabsLoaded = true;
+      });
+    }); 
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TabsPage');
   }
 
 }

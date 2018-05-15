@@ -1,4 +1,3 @@
-<ion-tabs color="secondary">
-  <ion-tab [root]="tab1" tabTitle="Chats" tabIcon="chatbubbles"></ion-tab>
-  <ion-tab [root]="tab2" tabTitle="Profile" tabIcon="contact"></ion-tab>
+<ion-tabs color="secondary" *ngIf="tabs">
+  <ion-tab *ngFor="let tab of tabs" [root]="tab.root" [tabTitle]="tab.title" [rootParams]="tab.rootParams"></ion-tab>
 </ion-tabs>

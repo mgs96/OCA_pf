@@ -19,6 +19,7 @@ import { Firebase } from "@ionic-native/firebase";
 import { UserProvider } from "../providers/user/user";
 import firebase from "firebase";
 import { ChatProvider } from "../providers/chat/chat";
+import { ChatsPage } from "../pages/chats/chats";
 
 @Component({
   templateUrl: "app.html"
@@ -49,9 +50,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: "Estados académicos", component: EstadosAcademicosPage },
+      { title: "Estados académicos", component: TabsPage },
       { title: "Calendario", component: CalendarPage },
-      { title: "Chat", component: TabsPage },
+      { title: "Chat", component: ChatsPage },
       { title: "Calendario", component: CalendarPage },
       { title: "Apoyos Académicos", component: AsesoriaAcademicaPage }
     ];
@@ -72,7 +73,7 @@ export class MyApp {
         this.verifyLogin()
           .then(
             ok => {
-              this.rootPage = EstadosAcademicosPage;
+              this.rootPage = TabsPage;
               this.menuCtrl.enable(true, 'myMenu');
             },
             notOk => {

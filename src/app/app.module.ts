@@ -41,6 +41,7 @@ import { ChatProvider } from '../providers/chat/chat';
 import { AsesoriaAcademicaPage } from "../pages/asesoria-academica/asesoria-academica";
 import { NotificationProvider } from '../providers/notification/notification';
 import { StatusProvider } from '../providers/status/status';
+import { SafeImagePipe } from '../pipes/safe-image/safe-image';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { StatusProvider } from '../providers/status/status';
     LoginPage,
     CalendarPage,
     CalDetailsPage,
-    AsesoriaAcademicaPage
+    AsesoriaAcademicaPage,
+    SafeImagePipe
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ import { StatusProvider } from '../providers/status/status';
     AngularFireModule.initializeApp(config),
     TabsPageModule,
     LoginfbPageModule,
-    HttpModule
+    HttpModule,
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [

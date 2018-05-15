@@ -18,7 +18,20 @@ export class StatusProvider {
   loadStatuses () {
     var promise = new Promise((resolve, reject) => {
       this.statuses.once('value', snapshot => {
-        resolve({ data: snapshot.val() });
+        let array = [];
+        for (const key in snapshot.val()) {
+          if (snapshot.val().hasOwnProperty(key)) {
+            let element = {
+              value: "",
+              name: ""
+            };
+            element.value = snapshot.val()[key];
+            element.name = key;
+            array.push(element);
+          }
+        }
+        //console.log(JSON.stringify(array));
+        resolve({ data: array });
       })
       .catch((error) => {
         reject(error);
