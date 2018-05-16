@@ -5,6 +5,7 @@ import { EstadosAcademicosPage } from "../estados_academicos/estados_academicos"
 import firebase from "firebase";
 import { AuthProvider } from "../../providers/auth/auth";
 import { UserProvider } from "../../providers/user/user";
+import { HomePage } from "../home/home";
 
 @Component({
   selector: "page-login",
@@ -61,7 +62,7 @@ export class LoginPage {
   }
 
   gotoApp() {
-    this.navCtrl.setRoot(EstadosAcademicosPage);
+    this.navCtrl.setRoot(HomePage);
   }
 
   passwordreset() {
