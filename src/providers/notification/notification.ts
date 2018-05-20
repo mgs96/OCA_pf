@@ -13,7 +13,7 @@ export class NotificationProvider {
   private chatNotifications = firebase.database().ref('/notifications/chats');
 
   constructor() {
-    console.log('Hello NotificationProvider Provider');
+    
   }
 
   pushChatNotification(receiver) {

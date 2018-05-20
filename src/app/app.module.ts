@@ -48,6 +48,7 @@ import { CuestionariosPage } from '../pages/cuestionarios/cuestionarios';
 import { PreTestPage } from '../pages/pre-test/pre-test';
 import { ProsTestPage } from '../pages/pros-test/pros-test';
 import { InAppBrowser } from '@ionic-native/in-app-browser'
+import { TallerProvider } from '../providers/taller/taller';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser'
     Firebase,
     NotificationProvider,
     StatusProvider,
-    InAppBrowser
+    InAppBrowser,
+    TallerProvider
   ]
 })
 export class AppModule {}

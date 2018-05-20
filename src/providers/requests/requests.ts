@@ -20,7 +20,6 @@ export class RequestsProvider {
   myfriends;
 
   constructor(public userservice: UserProvider, public events: Events) {
-    console.log('Hello RequestsProvider Provider');
   }
 
   sendrequest(req: connreq) {
