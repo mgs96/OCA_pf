@@ -10,6 +10,7 @@ import { EstadosAcademicosPage } from "../pages/estados_academicos/estados_acade
 import { ListPage } from "../pages/list/list";
 import { LoginPage } from "../pages/login/login";
 import { CalendarPage } from "../pages/calendar/calendar";
+import { NrcPage } from "../pages/nrc/nrc";
 
 import { LoginfbPage } from "../pages/loginfb/loginfb";
 import { TabsPage } from "../pages/tabs/tabs";
@@ -60,6 +61,7 @@ export class MyApp {
       { title: "Estados académicos", component: TabsPage },
       { title: "Calendario", component: CalendarPage },
       { title: "Chat", component: ChatsPage },
+      { title: "Fortalecimiento académico", component: NrcPage },
       { title: "Apoyos Académicos", component: AsesoriaAcademicaPage },
       { title: "Cuestionarios", component: CuestionariosPage }
     ];
@@ -91,8 +93,16 @@ export class MyApp {
               }); 
             },
             notOk => {
-              this.rootPage = LoginPage;
-              this.menuCtrl.enable(false, 'myMenu');
+              // I know I'm repeating myselft but lack of time demands it
+              this.statusProvider.loadStatuses().then((ok: any) => {
+                this.data = ok.data;
+                this.data.forEach(element => {
+                  let tab = { title: element.name, root: EstadosAcademicosPage, rootParams: element.value };
+                  this.tabs.push(tab);
+                });
+                this.rootPage = LoginPage;
+                this.menuCtrl.enable(false, 'myMenu');
+              }); 
             }
           )
           .then(() => {

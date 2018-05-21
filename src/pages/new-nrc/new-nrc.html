@@ -1,0 +1,33 @@
+<!--
+  Generated template for the NewNrcPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Nuevo curso</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="nrcForm">
+    <ion-item>
+      <ion-label floating>NRC</ion-label>
+      <ion-input type="text" formControlName="nrc" name="nrc" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Nombre del curso</ion-label>
+      <ion-input type="text" formControlName="nombreCurso" name="nombreCurso" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Número de sesiones</ion-label>
+      <ion-input type="number" formControlName="sesiones" name="sesiones" required></ion-input>
+    </ion-item>
+    <button [disabled]="!nrcForm.valid || buttonClicked" ion-button type="button" (click)="create()" block>Crear curso</button>
+  </form>
+
+</ion-content>

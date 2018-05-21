@@ -49,6 +49,8 @@ import { PreTestPage } from '../pages/pre-test/pre-test';
 import { ProsTestPage } from '../pages/pros-test/pros-test';
 import { InAppBrowser } from '@ionic-native/in-app-browser'
 import { TallerProvider } from '../providers/taller/taller';
+import { NrcPage } from '../pages/nrc/nrc';
+import { NewNrcPageModule } from '../pages/new-nrc/new-nrc.module';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import { TallerProvider } from '../providers/taller/taller';
     HomePage,
     CuestionariosPage,
     PreTestPage,
-    ProsTestPage
+    ProsTestPage,
+    NrcPage
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { TallerProvider } from '../providers/taller/taller';
     AngularFireModule.initializeApp(config),
     TabsPageModule,
     LoginfbPageModule,
-    HttpModule
+    HttpModule,
+    NewNrcPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -90,7 +94,8 @@ import { TallerProvider } from '../providers/taller/taller';
     HomePage,
     CuestionariosPage,
     PreTestPage,
-    ProsTestPage
+    ProsTestPage,
+    NrcPage
   ],
   providers: [
     StatusBar,

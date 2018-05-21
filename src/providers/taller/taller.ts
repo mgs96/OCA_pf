@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import firebase from 'firebase';
+import { Nrc } from '../../models/nrc';
 
 /*
   Generated class for the TallerProvider provider.
@@ -17,14 +18,14 @@ export class TallerProvider {
     
   }
 
-  createNrc(nrc: string, nombreCurso: string, nombreProfesor: string, numeroSesiones: number) {
-    let NRC = nrc.toUpperCase();
+  createNrc(nrc: Nrc) {
+    let NRC = nrc.nrc.toUpperCase();
     var promise = new Promise((resolve, reject) => {
       this.nrcs.child(firebase.auth().currentUser.uid).push().set({
         nrc: NRC,
-        nombreCurso: nombreCurso,
-        nombreProfesor: nombreProfesor,
-        numeroSesiones: numeroSesiones
+        nombreCurso: nrc.nombreCurso,
+        nombreProfesor: firebase.auth().currentUser.displayName,
+        numeroSesiones: nrc.sesiones
       })
       .then(() => {
         resolve(true);
@@ -48,6 +49,22 @@ export class TallerProvider {
       .catch(error => {
         reject(error);
       });
+    });
+    return promise;
+  }
+
+  readNrcs() {
+    var promise = new Promise((resolve, reject) => {
+      this.nrcs.once('value', snapshot => {
+        let array = [];
+        if (snapshot.val() != null) {
+          for (const item of snapshot.val()) {
+            array.push(item);
+          }
+        }
+        resolve({ data: array });
+      })
+      .catch(error => reject(error));
     });
     return promise;
   }

@@ -30,17 +30,12 @@ export class BuddiesPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BuddiesPage');
-  }
-
   searchuser(searchbar) {
     this.filteredusers = this.temparr;
     var q = searchbar.target.value;
     if (q.trim() == '') {
       return;
     }
-
     this.filteredusers = this.filteredusers.filter((v) => {
       if(v.displayName.toLowerCase().indexOf(q.toLowerCase()) > -1) {
         return true;

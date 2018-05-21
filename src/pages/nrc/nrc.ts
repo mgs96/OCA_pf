@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TallerProvider } from '../../providers/taller/taller';
+import { Nrc } from '../../models/nrc';
 
 /**
  * Generated class for the NrcPage page.
@@ -14,12 +16,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'nrc.html',
 })
 export class NrcPage {
+  NRCs;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private tallerProvider: TallerProvider
+  ) {
+    this.fetch();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NrcPage');
+  nrcTapped() {
+    console.log("HEY LISTEN");
+  }
+
+  fetch() {
+    this.tallerProvider.readNrcs().then((ok: any) => {
+      this.NRCs = ok.data;
+    });
+  }
+
+  add() {
+    this.navCtrl.push('NewNrcPage', { nrc: new Nrc() });
   }
 
 }
