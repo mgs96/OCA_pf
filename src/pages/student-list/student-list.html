@@ -28,6 +28,11 @@
         <img src={{item.photoURL}}>
       </ion-avatar>
       <h3>{{item.name}}</h3>
+      <p>{{ item.absence }} ausencias</p>
+      <button ion-button icon-right small (click)="ponerFalla(item)">
+        Colocar falla
+        <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon>
+      </button>
     </ion-item>
   </ion-list>
   <ion-fab bottom right>

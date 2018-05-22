@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { TallerProvider } from '../../providers/taller/taller';
 
 /**
@@ -20,7 +20,8 @@ export class StudentListPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public tallerProvider: TallerProvider
+    public tallerProvider: TallerProvider,
+    public alertCtrl: AlertController
   ) {
     this.curso = this.navParams.get('data');
     this.fetch();
@@ -35,6 +36,27 @@ export class StudentListPage {
       this.students = ok;
       console.log(JSON.stringify(this.students));
     });
+  }
+
+  ponerFalla(student) {
+    let alert = this.alertCtrl.create({
+      title: 'Inasistencia',
+      subTitle: `Estas seguro que ${ student.name } faltó a una sesión?`,
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            console.log("NOOO");
+          }
+        },
+        {
+          text: 'Si',
+          handler: () => {
+          this.tallerProvider.addAbscence(this.curso.nrc, student);
+        }
+      }]
+    });
+    alert.present();
   }
 
 }

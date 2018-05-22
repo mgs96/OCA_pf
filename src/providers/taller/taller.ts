@@ -69,10 +69,11 @@ export class TallerProvider {
     return promise;
   }
 
-  addAbscence(nrcUid, user, absence) {
-    let newAbscence = absence + 1;
+  addAbscence(nrcUid, user) {
+    console.log(JSON.stringify(user));
+    let newAbscence = user.absence + 1;
     var promise = new Promise((resolve, reject) => {
-      this.workshopAssistant.child(nrcUid).child(user.uid).update({
+      this.workshopAssistant.child(nrcUid).child(user.userUid).update({
         absence: newAbscence
       })
       .then(() => {
