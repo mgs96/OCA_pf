@@ -51,6 +51,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser'
 import { TallerProvider } from '../providers/taller/taller';
 import { NrcPage } from '../pages/nrc/nrc';
 import { NewNrcPageModule } from '../pages/new-nrc/new-nrc.module';
+import { StudentListPage } from '../pages/student-list/student-list';
+import { StudentListPageModule } from '../pages/student-list/student-list.module';
+import { AddStudentPageModule } from '../pages/add-student/add-student.module';
 
 @NgModule({
   declarations: [
@@ -77,7 +80,8 @@ import { NewNrcPageModule } from '../pages/new-nrc/new-nrc.module';
     TabsPageModule,
     LoginfbPageModule,
     HttpModule,
-    NewNrcPageModule
+    NewNrcPageModule,
+    AddStudentPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -95,7 +99,7 @@ import { NewNrcPageModule } from '../pages/new-nrc/new-nrc.module';
     CuestionariosPage,
     PreTestPage,
     ProsTestPage,
-    NrcPage
+    NrcPage,
   ],
   providers: [
     StatusBar,

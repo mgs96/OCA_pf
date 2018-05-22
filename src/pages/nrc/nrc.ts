@@ -27,7 +27,7 @@ export class NrcPage {
   }
 
   nrcTapped(nrc) {
-    console.log("HEY LISTEN", nrc);
+    this.navCtrl.push('StudentListPage', {data: nrc});
   }
 
   fetch() {

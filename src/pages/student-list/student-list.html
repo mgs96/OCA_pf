@@ -1,5 +1,5 @@
 <!--
-  Generated template for the NrcPage page.
+  Generated template for the StudentListPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,30 +7,27 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      Talleres de fortalecimiento <br> 
-      académicos
-    </ion-title>
+    <ion-title>Lista de estudiantes</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding-vertical>
-  <ion-grid *ngIf="NRCs.length <= 0">
+<ion-content padding>
+  <ion-grid *ngIf="students.length <= 0">
     <ion-row>
       <ion-col class="text-center caja-vacia">
         <ion-icon class="icono-grande" ios="ios-sunny" md="md-sunny"></ion-icon>
-        <p>No hay ningún curso</p>
+        <p>No hay ningún estudiante</p>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-list>
-    <ion-item *ngFor="let curso of NRCs" (click)="nrcTapped(curso)" >
-      <strong>NRC: {{ curso.nrc }}</strong>
+  <ion-list no-lines>
+    <ion-item *ngFor="let item of students">
+      <ion-avatar item-left>
+        <img src={{item.photoURL}}>
+      </ion-avatar>
+      <h3>{{item.name}}</h3>
     </ion-item>
   </ion-list>
   <ion-fab bottom right>

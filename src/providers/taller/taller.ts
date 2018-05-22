@@ -18,13 +18,13 @@ export class TallerProvider {
     
   }
 
-  createNrc(nrc: Nrc) {
+  createNrc(curso: Nrc) {
     var promise = new Promise((resolve, reject) => {
       this.nrcs.child(firebase.auth().currentUser.uid).push().set({
-        nrc: nrc,
-        nombreCurso: nrc.nombreCurso,
+        nrc: curso.nrc,
+        nombreCurso: curso.nombreCurso,
         nombreProfesor: firebase.auth().currentUser.displayName,
-        numeroSesiones: nrc.sesiones
+        numeroSesiones: curso.sesiones
       })
       .then(() => {
         resolve(true);
@@ -38,8 +38,10 @@ export class TallerProvider {
 
   addAsistente(nrcUid, user) {
     var promise = new Promise((resolve, reject) => {
-      this.workshopAssistant.child(nrcUid).push().set({
-        uid: user.uid,
+      this.workshopAssistant.child(nrcUid).child(user.uid).set({
+        name: user.displayName,
+        userUid: user.uid,
+        photoURL: user.photoURL,
         absence: 0
       })
       .then(() => {
@@ -48,6 +50,35 @@ export class TallerProvider {
       .catch(error => {
         reject(error);
       });
+    });
+    return promise;
+  }
+
+  listAsistentes(curso) {
+    var promise = new Promise((resolve, reject) => {
+      this.workshopAssistant.child(curso).once('value', snapshot => {
+        let students = snapshot.val();
+        let tempArray = [];
+        for(var key in students) {
+          tempArray.push(students[key])
+        }
+        resolve(tempArray);
+      })
+      .catch(error => reject(error));
+    });
+    return promise;
+  }
+
+  addAbscence(nrcUid, user, absence) {
+    let newAbscence = absence + 1;
+    var promise = new Promise((resolve, reject) => {
+      this.workshopAssistant.child(nrcUid).child(user.uid).update({
+        absence: newAbscence
+      })
+      .then(() => {
+        resolve(true);
+      })
+      .catch(error => reject(error));
     });
     return promise;
   }
