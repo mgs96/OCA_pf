@@ -32,7 +32,11 @@ export class NewNrcPage {
   }
 
   create() {
-    this.tallerProvider.createNrc(this.nrc);
+    this.buttonClicked = true;
+    Object.assign(this.nrc, this.nrcForm.value);
+    this.tallerProvider.createNrc(this.nrc).then(() => {
+      this.navCtrl.popToRoot();
+    });
   }
 
 }
