@@ -57,7 +57,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: "Nuestras Redes", component: HomePage, iconRoute: "assets/icon/redes.png" },
+      { title: "Nuestras Redes", component: HomePage, iconRoute: "assets/icon/social.png" },
       { title: "Estados académicos", component: TabsPage, iconRoute: "assets/icon/estados.png" },
       { title: "Calendario", component: CalendarPage, iconRoute: "assets/icon/calendario.png" },
       { title: "Chat", component: ChatsPage, iconRoute: "assets/icon/chat.png" },
