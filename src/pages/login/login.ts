@@ -6,12 +6,15 @@ import firebase from "firebase";
 import { AuthProvider } from "../../providers/auth/auth";
 import { UserProvider } from "../../providers/user/user";
 import { HomePage } from "../home/home";
+import { StatusProvider } from "../../providers/status/status";
 
 @Component({
   selector: "page-login",
   templateUrl: "login.html"
 })
 export class LoginPage {
+  data;
+  public tabs = [];
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -19,7 +22,8 @@ export class LoginPage {
     private toastCtrl: ToastController,
     private authService: AuthProvider,
     private userProvider: UserProvider,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private statusProvider: StatusProvider
   ) {}
 
   showToast(name: string) {
@@ -54,7 +58,14 @@ export class LoginPage {
               this.userProvider.updateToken();
             });
             this.menuCtrl.enable(true, 'myMenu');
-            this.gotoApp();
+            this.statusProvider.loadStatuses().then((ok: any) => {
+              this.data = ok.data;
+              this.data.forEach(element => {
+                let tab = { title: element.name, root: EstadosAcademicosPage, rootParams: element.value };
+                this.tabs.push(tab);
+              });
+              this.gotoApp();
+            }); 
           })
           .catch(error => console.log(error));
       })
@@ -62,7 +73,7 @@ export class LoginPage {
   }
 
   gotoApp() {
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(HomePage, { data: this.tabs });
   }
 
   passwordreset() {

@@ -82,6 +82,7 @@ export class MyApp {
         this.verifyLogin()
           .then(
             ok => {
+              console.log("TOY LOGUEADO");
               this.statusProvider.loadStatuses().then((ok: any) => {
                 this.data = ok.data;
                 this.data.forEach(element => {
@@ -93,16 +94,10 @@ export class MyApp {
               }); 
             },
             notOk => {
-              // I know I'm repeating myselft but lack of time demands it
-              this.statusProvider.loadStatuses().then((ok: any) => {
-                this.data = ok.data;
-                this.data.forEach(element => {
-                  let tab = { title: element.name, root: EstadosAcademicosPage, rootParams: element.value };
-                  this.tabs.push(tab);
-                });
-                this.rootPage = LoginPage;
-                this.menuCtrl.enable(false, 'myMenu');
-              }); 
+              console.log("NO TOY LOGUEADO");
+              // I know I'm repeating myselft but lack of time demands itS
+              this.rootPage = LoginPage;
+              this.menuCtrl.enable(false, 'myMenu');
             }
           )
           .then(() => {
@@ -158,7 +153,12 @@ export class MyApp {
       this.googlePlus.logout().then(() => {
         this.navCtrl.setRoot(LoginPage);
         this.menuCtrl.enable(false, 'myMenu');
-      });
+      })
+      .catch(error => {
+        // Temporal fix
+        this.navCtrl.setRoot(LoginPage);
+        this.menuCtrl.enable(false, 'myMenu');
+      })
     });
   }
 

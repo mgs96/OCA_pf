@@ -16,7 +16,7 @@ import { Nrc } from '../../models/nrc';
   templateUrl: 'nrc.html',
 })
 export class NrcPage {
-  NRCs;
+  NRCs = [];
 
   constructor(
     public navCtrl: NavController, 
@@ -26,13 +26,13 @@ export class NrcPage {
     this.fetch();
   }
 
-  nrcTapped() {
-    console.log("HEY LISTEN");
+  nrcTapped(nrc) {
+    console.log("HEY LISTEN", nrc);
   }
 
   fetch() {
     this.tallerProvider.readNrcs().then((ok: any) => {
-      this.NRCs = ok.data;
+      this.NRCs = ok;
     });
   }
 

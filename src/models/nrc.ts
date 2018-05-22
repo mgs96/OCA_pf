@@ -1,11 +1,11 @@
 export class Nrc {
-  nrc: string;
+  nrc: number;
   nombreCurso: string;
   sesiones: number;
 
   constructor() {
-    this.nrc = "";
-    this.nombreCurso = "";
-    this.sesiones = 0;
+    this.nrc = null;
+    this.nombreCurso = null;
+    this.sesiones = null;
   }
 }

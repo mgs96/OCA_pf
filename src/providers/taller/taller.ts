@@ -19,10 +19,9 @@ export class TallerProvider {
   }
 
   createNrc(nrc: Nrc) {
-    let NRC = nrc.nrc.toUpperCase();
     var promise = new Promise((resolve, reject) => {
       this.nrcs.child(firebase.auth().currentUser.uid).push().set({
-        nrc: NRC,
+        nrc: nrc,
         nombreCurso: nrc.nombreCurso,
         nombreProfesor: firebase.auth().currentUser.displayName,
         numeroSesiones: nrc.sesiones
@@ -55,14 +54,13 @@ export class TallerProvider {
 
   readNrcs() {
     var promise = new Promise((resolve, reject) => {
-      this.nrcs.once('value', snapshot => {
-        let array = [];
-        if (snapshot.val() != null) {
-          for (const item of snapshot.val()) {
-            array.push(item);
-          }
+      this.nrcs.child(firebase.auth().currentUser.uid).once('value', snapshot => {
+        let nrcData = snapshot.val();
+        let tempArray = [];
+        for(var key in nrcData) {
+          tempArray.push(nrcData[key])
         }
-        resolve({ data: array });
+        resolve(tempArray);
       })
       .catch(error => reject(error));
     });

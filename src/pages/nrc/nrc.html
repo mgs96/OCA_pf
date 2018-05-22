@@ -19,18 +19,18 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-grid *ngIf="NRC == null">
+<ion-content padding-vertical>
+  <ion-grid *ngIf="NRCs === null">
     <ion-row>
       <ion-col class="text-center caja-vacia">
         <ion-icon class="icono-grande" ios="ios-sunny" md="md-sunny"></ion-icon>
-        <p>No hay ninguna curso</p>
+        <p>No hay ningún curso</p>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-list>
-    <ion-item *ngFor="let nrc of NRCS" (click)="nrcTapped()" >
-      {{ nrc }}
+    <ion-item *ngFor="let nrc of NRCs" (click)="nrcTapped(nrc)" >
+      NRC: {{ nrc.nrc }}
     </ion-item>
   </ion-list>
   <ion-fab bottom right>
