@@ -54,19 +54,10 @@ export class TallerProvider {
     return promise;
   }
 
-  listAsistentes(curso) {
-    var promise = new Promise((resolve, reject) => {
-      this.workshopAssistant.child(curso).once('value', snapshot => {
-        let students = snapshot.val();
-        let tempArray = [];
-        for(var key in students) {
-          tempArray.push(students[key])
-        }
-        resolve(tempArray);
-      })
-      .catch(error => reject(error));
+  listAsistentes(curso, callback) {
+    this.workshopAssistant.child(curso).on('value', snapshot => {
+      callback(snapshot);
     });
-    return promise;
   }
 
   addAbscence(nrcUid, user) {
@@ -84,19 +75,10 @@ export class TallerProvider {
     return promise;
   }
 
-  readNrcs() {
-    var promise = new Promise((resolve, reject) => {
-      this.nrcs.child(firebase.auth().currentUser.uid).once('value', snapshot => {
-        let nrcData = snapshot.val();
-        let tempArray = [];
-        for(var key in nrcData) {
-          tempArray.push(nrcData[key])
-        }
-        resolve(tempArray);
-      })
-      .catch(error => reject(error));
+  readNrcs(callback) {
+    this.nrcs.child(firebase.auth().currentUser.uid).on('value', snapshot => {
+      callback(snapshot);
     });
-    return promise;
   }
 
 }

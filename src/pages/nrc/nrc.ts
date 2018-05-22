@@ -31,8 +31,13 @@ export class NrcPage {
   }
 
   fetch() {
-    this.tallerProvider.readNrcs().then((ok: any) => {
-      this.NRCs = ok;
+    this.tallerProvider.readNrcs(snapshot => {
+      let nrcData = snapshot.val();
+      let tempArray = [];
+      for(var key in nrcData) {
+        tempArray.push(nrcData[key])
+      }
+      this.NRCs = tempArray;
     });
   }
 

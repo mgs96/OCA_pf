@@ -38,7 +38,7 @@ export class MyApp {
   public tabs = [];
   data;
 
-  pages: Array<{ title: string; component: any }>;
+  pages: Array<{ title: string; component: any, iconRoute: string }>;
 
   constructor(
     public platform: Platform,
@@ -57,13 +57,13 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: "Nuestras Redes", component: HomePage },
-      { title: "Estados académicos", component: TabsPage },
-      { title: "Calendario", component: CalendarPage },
-      { title: "Chat", component: ChatsPage },
-      { title: "Fortalecimiento académico", component: NrcPage },
-      { title: "Apoyos Académicos", component: AsesoriaAcademicaPage },
-      { title: "Cuestionarios", component: CuestionariosPage }
+      { title: "Nuestras Redes", component: HomePage, iconRoute: "assets/icon/redes.png" },
+      { title: "Estados académicos", component: TabsPage, iconRoute: "assets/icon/estados.png" },
+      { title: "Calendario", component: CalendarPage, iconRoute: "assets/icon/calendario.png" },
+      { title: "Chat", component: ChatsPage, iconRoute: "assets/icon/chat.png" },
+      { title: "Fortalecimiento académico", component: NrcPage, iconRoute: "assets/icon/fortalecimiento.png" },
+      { title: "Apoyos Académicos", component: AsesoriaAcademicaPage, iconRoute: "assets/icon/apoyos.png" },
+      { title: "Cuestionarios", component: CuestionariosPage, iconRoute: "assets/icon/cuestionarios.png" }
     ];
   }
 

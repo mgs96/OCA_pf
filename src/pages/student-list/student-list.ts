@@ -32,8 +32,13 @@ export class StudentListPage {
   }
 
   fetch() {
-    this.tallerProvider.listAsistentes(this.curso.nrc).then((ok: any) => {
-      this.students = ok;
+    this.tallerProvider.listAsistentes(this.curso.nrc, snapshot => {
+      let students = snapshot.val();
+      let tempArray = [];
+      for(var key in students) {
+        tempArray.push(students[key])
+      }
+      this.students = tempArray;
       console.log(JSON.stringify(this.students));
     });
   }

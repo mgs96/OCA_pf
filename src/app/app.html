@@ -13,8 +13,9 @@
   <ion-content>
     <ion-list no-lines>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon item-start name="home"></ion-icon>
-        <h2>{{p.title}}</h2>
+        <!-- <ion-icon item-start name="home"></ion-icon> -->
+        <img class="icono" [src]="p.iconRoute" />
+        <h2 class="display-block">{{p.title}}</h2>
       </button>
     </ion-list>
   </ion-content>
