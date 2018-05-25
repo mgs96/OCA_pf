@@ -44,7 +44,6 @@ export class LoginPage {
         offline: true
       })
       .then(res => {
-        console.log(JSON.stringify(res));
         const googleCredential = firebase.auth.GoogleAuthProvider.credential(
           res.idToken
         );
@@ -55,6 +54,7 @@ export class LoginPage {
               if (userDetails == null) {
                 this.userProvider.adduser(firebase.auth().currentUser);
               }
+              console.log(JSON.stringify(userDetails));
               this.userProvider.updateToken();
             });
             this.menuCtrl.enable(true, 'myMenu');

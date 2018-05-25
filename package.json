@@ -90,8 +90,8 @@
       "cordova-plugin-inappbrowser": {}
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }
