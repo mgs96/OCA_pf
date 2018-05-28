@@ -76,6 +76,7 @@ export class TallerProvider {
   }
 
   readNrcs(callback) {
+    console.log(firebase.auth().currentUser);
     this.nrcs.child(firebase.auth().currentUser.uid).on('value', snapshot => {
       callback(snapshot);
     });

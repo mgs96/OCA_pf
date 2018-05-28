@@ -51,10 +51,12 @@ export class LoginPage {
           .loginWithGoogle(googleCredential)
           .then(res => {
             this.userProvider.getuserdetails().then(userDetails => {
+              console.log(firebase.auth().currentUser)
               if (userDetails == null) {
                 this.userProvider.adduser(firebase.auth().currentUser);
               }
-              console.log(JSON.stringify(userDetails));
+              this.userProvider.loguedUser = userDetails;
+              //console.log(JSON.stringify(this.userProvider.loguedUser));
               this.userProvider.updateToken();
             });
             this.menuCtrl.enable(true, 'myMenu');
@@ -64,6 +66,7 @@ export class LoginPage {
                 let tab = { title: element.name, root: EstadosAcademicosPage, rootParams: element.value };
                 this.tabs.push(tab);
               });
+              this.statusProvider.tabs = this.tabs;
               this.gotoApp();
             }); 
           })

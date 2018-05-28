@@ -13,6 +13,7 @@ import firebase from "firebase";
 export class UserProvider {
   firedata = database().ref("/users/");
   token: string;
+  public loguedUser: any;
 
   constructor(public afireauth: AngularFireAuth) {
     console.log("Hello UserProvider Provider");
