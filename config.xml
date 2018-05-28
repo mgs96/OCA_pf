@@ -20,7 +20,6 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
-        <hook src="fixFirebasePlugin.js" type="before_build" />
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -106,4 +105,5 @@
     <allow-navigation href="http://10.20.41.69:8100" />
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="7.0.0" />
+    <allow-navigation href="http://10.20.41.87:8100" />
 </widget>
