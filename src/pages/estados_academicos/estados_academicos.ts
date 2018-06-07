@@ -20,8 +20,9 @@ export class EstadosAcademicosPage {
     private statusService: StatusProvider,
     private navParams: NavParams
   ) {
-    this.img = navParams.data;
-    
+
+    this.img = this.navParams.data;
+
     this.event.subscribe('hello', (asesoria) => {
       // user and time are the same arguments passed in `events.publish(user, time)`
       this.addEventXD(calendar, asesoria); //This works.

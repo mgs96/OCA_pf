@@ -29,7 +29,10 @@ export class TabsPage {
   ) {
     //this.tabs = this.navParams.get('data');
     //this.tabs = JSON.parse(window.localStorage.getItem('tabs'));
+    console.log(this.statusProvider.tabs);
     this.tabs = this.statusProvider.tabs;
+    console.log(this.tabs)
+    ;
   }
 
   ionViewDidLoad() {

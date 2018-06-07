@@ -89,6 +89,7 @@ export class MyApp {
                   let tab = { title: element.name, root: EstadosAcademicosPage, rootParams: element.value };
                   this.tabs.push(tab);
                 });
+                this.statusProvider.tabs = this.tabs;
                 this.rootPage = HomePage;
                 this.menuCtrl.enable(true, 'myMenu');
               }); 
