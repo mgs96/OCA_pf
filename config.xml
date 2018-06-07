@@ -89,9 +89,6 @@
     <plugin name="cordova-plugin-filepath" spec="^1.3.0" />
     <plugin name="cordova-plugin-filechooser" spec="^1.0.1" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
-    <plugin name="cordova-android-support-gradle-release" spec="^1.3.0">
-        <variable name="ANDROID_SUPPORT_VERSION" value="27.+" />
-    </plugin>
     <plugin name="cordova-plugin-statusbar" spec="^2.4.1" />
     <plugin name="cordova-plugin-firebase" spec="^1.0.0" />
     <allow-navigation href="http://172.17.68.172:8100" />
@@ -102,10 +99,20 @@
     <allow-navigation href="http://10.20.41.67:8100" />
     <allow-navigation href="http://10.20.41.68:8100" />
     <allow-navigation href="http://10.20.41.69:8100" />
-    <engine name="ios" spec="4.5.4" />
-    <engine name="android" spec="7.0.0" />
     <allow-navigation href="http://10.20.41.87:8100" />
     <allow-navigation href="http://10.20.41.91:8100" />
     <plugin name="cordova-plugin-appavailability" spec="~0.4.2" />
     <plugin name="cordova-plugin-device" spec="~2.0.2" />
+    <allow-navigation href="http://10.20.41.45:8100" />
+    <plugin name="cordova-android-firebase-gradle-release" spec="^1.0.1">
+        <variable name="FIREBASE_VERSION" value="11.8.0" />
+    </plugin>
+    <plugin name="cordova-android-play-services-gradle-release" spec="^1.4.2">
+        <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
+    </plugin>
+    <plugin name="cordova-android-support-gradle-release" spec="^1.4.3">
+        <variable name="ANDROID_SUPPORT_VERSION" value="26.+" />
+    </plugin>
+    <engine name="ios" spec="4.5.4" />
+    <engine name="android" spec="7.0.0" />
 </widget>
