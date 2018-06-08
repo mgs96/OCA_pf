@@ -2,6 +2,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
+import localeCo from '@angular/common/locales/es-CO';
 
 // ionic
 import { StatusBar } from '@ionic-native/status-bar';
@@ -12,6 +14,8 @@ import { Calendar } from '@ionic-native/calendar';
 import { File } from "@ionic-native/file";
 import { FileChooser } from "@ionic-native/file-chooser";
 import { FilePath } from "@ionic-native/file-path";
+
+registerLocaleData(localeCo, 'co');
 
 //firebase
 import { AngularFireModule } from "angularfire2";

@@ -23,6 +23,7 @@ export class BuddychatPage {
   newmessage;
   allmessages = [];
   photoURL;
+  lastMessageDate;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public chatservice: ChatProvider, public events: Events, public zone: NgZone, public notifications: NotificationProvider) {
     this.buddy = this.chatservice.buddy;
@@ -32,6 +33,7 @@ export class BuddychatPage {
       this.allmessages = [];
       this.zone.run(() => {
         this.allmessages = this.chatservice.buddymessages;
+        this.lastMessageDate = new Date(this.allmessages[this.allmessages.length - 1].timestamp);
       });
     });
   }
