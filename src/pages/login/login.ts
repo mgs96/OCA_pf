@@ -56,7 +56,6 @@ export class LoginPage {
                 this.userProvider.adduser(firebase.auth().currentUser);
               }
               this.userProvider.loguedUser = userDetails;
-              //console.log(JSON.stringify(this.userProvider.loguedUser));
               this.userProvider.updateToken();
             });
             this.menuCtrl.enable(true, 'myMenu');

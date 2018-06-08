@@ -4,6 +4,7 @@ import { Calendar } from '@ionic-native/calendar';
 import { CalDetailsPage } from '../cal-details/cal-details';
 
 import { Events } from 'ionic-angular';
+import { UserProvider } from '../../providers/user/user';
 
 @Component({
   selector: 'page-calendar',
@@ -15,12 +16,13 @@ export class CalendarPage {
   isAdmin = false;
 
   constructor(public navCtrl: NavController, private toast:ToastController, public navParams: NavParams, private calendar: Calendar, private plt: Platform,
-    private event: Events) {
-    this.plt.ready().then(() => {
-      this.calendar.listCalendars().then(data => {
-        this.calendars = data;
+    private event: Events, private userProvider: UserProvider) {
+      this.isAdmin = this.userProvider.loguedUser.admin;
+      this.plt.ready().then(() => {
+        this.calendar.listCalendars().then(data => {
+          this.calendars = data;
+        });
       });
-    });
   }
 
   addEvent(cal) {
@@ -46,15 +48,6 @@ export class CalendarPage {
 
   openCal(cal) {
     this.navCtrl.push(CalDetailsPage, { name: cal.name });
-  }
-
-  changeAdmin() {
-    if (this.isAdmin) {
-      this.isAdmin = false;
-    } else {
-      this.isAdmin = true;
-    }
-
   }
 
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { RequestsProvider } from '../../providers/requests/requests';
 import { ChatProvider } from '../../providers/chat/chat';
+import { UserProvider } from '../../providers/user/user';
 
 /**
  * Generated class for the ChatsPage page.
@@ -19,8 +20,10 @@ export class ChatsPage {
 
   myrequests;
   myfriends;
+  isAdmin = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public requestservice: RequestsProvider, public events: Events, public alertCtrl: AlertController, public chatservice: ChatProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public requestservice: RequestsProvider, public events: Events, public alertCtrl: AlertController, public chatservice: ChatProvider, private userProvider: UserProvider) {
+    this.isAdmin = this.userProvider.loguedUser.admin;
   }
 
   ionViewDidLoad() {
