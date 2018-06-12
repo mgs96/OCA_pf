@@ -15,11 +15,11 @@
     <ion-card-content>
       <ion-list no-lines>
         <ion-item>
-          <ion-icon name="calendar"></ion-icon> Start: {{ ev.dtstart | date }}
+          <ion-icon name="calendar"></ion-icon> Inicio: {{ ev.dtstart | date:'shortTime':'':'es-CO' }}, {{ ev.dtstart | date:'longDate':'':'es-CO' }}
         </ion-item>
 
         <ion-item>
-          <ion-icon name="calendar"></ion-icon> End: {{ ev.dtend | date }}
+          <ion-icon name="calendar"></ion-icon> Fin: {{ ev.dtend | date:'shortTime':'':'es-CO' }}, {{ ev.dtend | date:'longDate':'':'es-CO' }}
         </ion-item>
 
         <ion-item>

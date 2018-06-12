@@ -143,6 +143,14 @@ export class MyApp {
         if (user) {
           this.displayName = user.displayName;
           this.avatar = user.photoURL;
+          this.userProvider.getuserdetails().then(userDetails => {
+            console.log(firebase.auth().currentUser)
+            if (userDetails == null) {
+              this.userProvider.adduser(firebase.auth().currentUser);
+            }
+            this.userProvider.loguedUser = userDetails;
+            this.userProvider.updateToken();
+          });
           resolve(true);
         } else {
           reject(true);

@@ -14,9 +14,12 @@
 
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchstring" (input)="searchuser($event)" placeholder="Search"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchstring" (input)="searchuser($event)" placeholder="Buscar"></ion-searchbar>
   <ion-list no-lines>
     <ion-list>
+      <ion-item>
+        <h3 text-center>Desliza a la izquierda para agregar</h3>
+      </ion-item>
       <ion-item-sliding *ngFor="let key of filteredusers">
         <ion-item >
           <ion-avatar item-left>
@@ -27,7 +30,7 @@
         <ion-item-options slide="left">
           <button ion-button color="primary" (click)="sendreq(key)">
             <ion-icon name="person-add"></ion-icon>
-            Add
+            Agregar
           </button>
         </ion-item-options>
         
