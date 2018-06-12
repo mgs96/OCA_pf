@@ -114,6 +114,7 @@
         <variable name="ANDROID_SUPPORT_VERSION" value="26.+" />
     </plugin>
     <allow-navigation href="http://10.20.41.3:8100" />
+    <allow-navigation href="http://10.20.41.40:8100" />
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="7.0.0" />
 </widget>

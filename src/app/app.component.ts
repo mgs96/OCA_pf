@@ -111,9 +111,12 @@ export class MyApp {
                 //   { animate: true }
                 // );
               } else {
-                if (this.navCtrl.getActive().name != "TabsPage") {
+                console.log(this.navCtrl.getActive().name);
+                if (this.navCtrl.getActive().name != "BuddychatPage") {
+                  const newData = JSON.parse(data.user);
+                  console.log(newData);
                   const toast = this.toastCtrl.create({
-                    message: `Tienes un nuevo mensaje de ${ data.user.displayName }`,
+                    message: `Tienes un nuevo mensaje de ${ newData.displayName }`,
                     duration: 2000,
                     position: 'bottom'
                   });

@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import { connreq } from '../../models/request';
 import { UserProvider } from '../user/user';
 import { Events } from 'ionic-angular';
+import { AngularFireAuth } from "angularfire2/auth";
 
 /*
   Generated class for the RequestsProvider provider.
@@ -19,7 +20,7 @@ export class RequestsProvider {
   userdetails;
   myfriends;
 
-  constructor(public userservice: UserProvider, public events: Events) {
+  constructor(public userservice: UserProvider, public events: Events, public afireAuth: AngularFireAuth) {
   }
 
   sendrequest(req: connreq) {
@@ -36,6 +37,14 @@ export class RequestsProvider {
   }
 
   getmyrequests() {
+    console.log("AFIERAUT");
+    console.log(this.afireAuth.auth.currentUser);
+    console.log("VANILLA");
+    console.log(firebase.auth());
+    firebase.auth().onAuthStateChanged(user => {
+      console.log(user);
+    });
+
     let allmyrequests;
     var myrequests = [];
     this.firereq.child(firebase.auth().currentUser.uid).on('value', (snapshot) => {
