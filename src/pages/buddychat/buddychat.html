@@ -22,16 +22,16 @@
         </ion-avatar>
         <div class="bubble me" *ngIf="item.sentBy == buddy.uid">
           <h3>{{item.message}}</h3>
-          <h6>{{item.tiemstamp}}</h6>
+          <h6><small>recibido el {{item.timestamp | date:'longDate':'':'es-CO'}}, {{item.timestamp | date:'shortTime':'':'es-CO'}} </small></h6>
         </div>
         <ion-avatar item-right *ngIf="item.sentBy != buddy.uid">
           <img src="{{photoURL}}">
         </ion-avatar>
         <div class="bubble you" *ngIf="item.sentBy != buddy.uid">
           <h3>{{item.message}}</h3>
+          <h6><small>enviado el {{item.timestamp | date:'longDate':'':'es-CO'}}, {{item.timestamp | date:'shortTime':'':'es-CO'}}</small></h6>
         </div>
       </ion-item>
-      <ion-item text-center text-wrap><h5>Ultimo mensaje recibido el {{lastMessageDate | date:'medium':'':'es-CO'}}</h5></ion-item>
     </ion-list>
   </div>
 </ion-content>
