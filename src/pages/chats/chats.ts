@@ -49,7 +49,8 @@ export class ChatsPage {
   }
 
   addbuddy() {
-    this.navCtrl.push('BuddiesPage');
+    const friends = this.myfriends;
+    this.navCtrl.push('BuddiesPage', { data: friends });
   }
 
   accept(item) {

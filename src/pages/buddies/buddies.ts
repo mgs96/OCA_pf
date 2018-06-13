@@ -22,12 +22,14 @@ export class BuddiesPage {
   newrequest = {} as connreq;
   temparr = [];
   filteredusers = [];
+  friends = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public userservice: UserProvider, public alertCtrl: AlertController, public requestservice: RequestsProvider) {
     this.userservice.getallusers().then((res: any) => {
       this.filteredusers = res;
       this.temparr = res;
     });
+    this.friends = this.navParams.get('data');
   }
 
   searchuser(searchbar) {
@@ -47,24 +49,45 @@ export class BuddiesPage {
   sendreq(recipient) {
     this.newrequest.sender = firebase.auth().currentUser.uid;
     this.newrequest.recipient = recipient.uid;
-    if (this.newrequest.sender === this.newrequest.recipient)
-      alert('You are your friend always');
+
+    console.log("AMIGOS");
+    console.log(this.friends);
+
+    if (this.newrequest.sender === this.newrequest.recipient) {
+      alert('Este eres tu');
+    }
     else {
-      let successalert = this.alertCtrl.create({
-        title: 'Request sent',
-        subTitle: 'Your request was sent to ' + recipient.displayName,
-        buttons: ['ok']
-      });
-    
-      this.requestservice.sendrequest(this.newrequest).then((res: any) => {
-        if (res.success) {
-          successalert.present();
-          let sentuser = this.filteredusers.indexOf(recipient);
-          this.filteredusers.splice(sentuser, 1);
+      let isAlreadyFriend: Boolean = false;
+      this.friends.forEach(friend => {
+        if (friend.uid == this.newrequest.recipient) {
+          isAlreadyFriend = true;
         }
-      }).catch((err) => {
-        alert(err);
-      })
+      });
+
+      if (isAlreadyFriend) {
+        let failureAlert = this.alertCtrl.create({
+          title: 'Error',
+          subTitle: 'Anteriormente agregaste a ' + recipient.displayName,
+          buttons: ['ok']
+        });
+        failureAlert.present();
+      } else {
+        let successalert = this.alertCtrl.create({
+          title: 'Petición enviada',
+          subTitle: 'Tu petición ha sido enviada a ' + recipient.displayName,
+          buttons: ['ok']
+        });
+      
+        this.requestservice.sendrequest(this.newrequest).then((res: any) => {
+          if (res.success) {
+            successalert.present();
+            let sentuser = this.filteredusers.indexOf(recipient);
+            this.filteredusers.splice(sentuser, 1);
+          }
+        }).catch((err) => {
+          alert(err);
+        });
+      }
     }
   }
 
