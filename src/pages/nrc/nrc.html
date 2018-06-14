@@ -28,12 +28,21 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-list>
+  <ion-list no-lines>
     <ion-item *ngFor="let curso of NRCs" (click)="nrcTapped(curso)" >
-      <strong>NRC: {{ curso.nrc }}</strong>
+      <ion-card>
+        <ion-card-header>
+          {{ curso.nombreCurso }}
+        </ion-card-header>
+        <ion-card-content>
+          <strong>Psicólogo: </strong><p>{{ curso.nombreProfesor }}</p>
+          <strong>NRC: </strong><p>{{ curso.nrc }}</p>
+          <strong>Numero de sesiones: </strong><p>{{ curso.numeroSesiones }}</p>
+        </ion-card-content>
+      </ion-card>
     </ion-item>
   </ion-list>
-  <ion-fab bottom right>
+  <ion-fab bottom right *ngIf="this.userProvider.loguedUser.admin">
     <button ion-fab (click)="add()">
       <ion-icon name="add"></ion-icon>
     </button>

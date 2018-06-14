@@ -12,6 +12,7 @@ import { Nrc } from '../../models/nrc';
 export class TallerProvider {
 
   private nrcs = firebase.database().ref('/nrc');
+  private workshop = firebase.database().ref('/workshop');
   private workshopAssistant = firebase.database().ref('/workshopAssistant');
 
   constructor() {
@@ -36,16 +37,27 @@ export class TallerProvider {
     return promise;
   }
 
-  addAsistente(nrcUid, user) {
+  addAsistente(course, user) {
     var promise = new Promise((resolve, reject) => {
-      this.workshopAssistant.child(nrcUid).child(user.uid).set({
+      this.workshop.child(course.nrc).child(user.uid).set({
         name: user.displayName,
         userUid: user.uid,
         photoURL: user.photoURL,
         absence: 0
       })
       .then(() => {
-        resolve(true);
+        this.workshopAssistant.child(user.uid).push().set({
+          nrc: course.nrc,
+          nombreProfesor : course.nombreProfesor,
+          nombreCurso: course.nombreCurso,
+          numeroSesiones: course.numeroSesiones
+        })
+        .then(() => {
+          resolve(true);
+        })
+        .catch(error => {
+          reject(error);
+        });
       })
       .catch(error => {
         reject(error);
@@ -55,7 +67,7 @@ export class TallerProvider {
   }
 
   listAsistentes(curso, callback) {
-    this.workshopAssistant.child(curso).on('value', snapshot => {
+    this.workshop.child(curso).on('value', snapshot => {
       callback(snapshot);
     });
   }
@@ -64,7 +76,7 @@ export class TallerProvider {
     console.log(JSON.stringify(user));
     let newAbscence = user.absence + 1;
     var promise = new Promise((resolve, reject) => {
-      this.workshopAssistant.child(nrcUid).child(user.userUid).update({
+      this.workshop.child(nrcUid).child(user.userUid).update({
         absence: newAbscence
       })
       .then(() => {
@@ -75,9 +87,15 @@ export class TallerProvider {
     return promise;
   }
 
-  readNrcs(callback) {
+  readNrcs(callback, uid = firebase.auth().currentUser) {
     console.log(firebase.auth().currentUser);
     this.nrcs.child(firebase.auth().currentUser.uid).on('value', snapshot => {
+      callback(snapshot);
+    });
+  }
+
+  readAssistants(user_uid, callback) {
+    this.workshopAssistant.child(user_uid).on('value', snapshot => {
       callback(snapshot);
     });
   }

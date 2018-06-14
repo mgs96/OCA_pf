@@ -28,6 +28,7 @@ export class AddStudentPage {
     public alertCtrl: AlertController
   ) {
     this.nrc = this.navParams.get('data');
+    console.log(this.nrc);
     this.userservice.getallusers().then((res: any) => {
       this.filteredusers = res;
       this.temparr = res;
@@ -53,7 +54,7 @@ export class AddStudentPage {
     if(currentUid == student.uid) {
       alert('No puedes agregarte al curso');
     } else {
-      this.tallerProvider.addAsistente(this.nrc.nrc, student).then(() => {
+      this.tallerProvider.addAsistente(this.nrc, student).then(() => {
         let successalert = this.alertCtrl.create({
           title: 'Estudiante agregado',
           subTitle: `has agregado a ${ student.name } al curso ${ this.nrc.courseName }`,
