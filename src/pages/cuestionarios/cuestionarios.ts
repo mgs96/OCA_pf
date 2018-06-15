@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PreTestPage } from '../pre-test/pre-test';
 import { ProsTestPage } from '../pros-test/pros-test';
+import { EncuestaProvider } from '../../providers/encuesta/encuesta';
 
 /**
  * Generated class for the CuestionariosPage page.
@@ -20,7 +21,11 @@ export class CuestionariosPage {
   tab1: any;
   tab2: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public encuestaProvider: EncuestaProvider
+  ) {
     this.tab1 = PreTestPage;
     this.tab2 = ProsTestPage;
   }

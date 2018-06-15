@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
 import firebase from 'firebase';
-import { DocumentSnapshot } from '@firebase/firestore-types';
-
-const configurationRoute = firebase.database().ref('/configuration');
 
 @Injectable()
-export class ConfigurationsProvider {
+export class EncuestaProvider {
+
+  configurationRoute = firebase.database().ref('/configuration');
 
   constructor() {
   }
 
   loadConfigurations(callback) {
-    configurationRoute.on('value', snapshot => {
+    this.configurationRoute.on('value', snapshot => {
       callback(snapshot);
     });
   }
   
   updateConfigurations(toggles) {
-    let preTest = toggles.pretest;
+    console.log(toggles);
+    let preTest = toggles.preTest;
     let postTest = toggles.postTest;
     var promise = new Promise((resolve,reject) => {
-      configurationRoute.update({
+      this.configurationRoute.update({
         preTestEnabled: preTest,
         postTestEnabled: postTest
       })

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { UserProvider } from '../../providers/user/user';
+import { EncuestaProvider } from '../../providers/encuesta/encuesta';
 
 /**
  * Generated class for the PreTestPage page.
@@ -16,13 +18,21 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 export class PreTestPage {
 
-  isToggled: boolean = false;
+  isToggledPreTest: boolean;
+  isToggledPostTest: boolean;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public iab: InAppBrowser
+    public iab: InAppBrowser,
+    public userProvider: UserProvider,
+    public encuestaProvider: EncuestaProvider
   ) {
+    this.encuestaProvider.loadConfigurations(snapshot => {
+      let toggles = snapshot.val();
+      this.isToggledPreTest = toggles.preTestEnabled;
+      this.isToggledPostTest = toggles.postTestEnabled;
+    });
   }
 
   openLink(link: string) {
@@ -30,7 +40,12 @@ export class PreTestPage {
   }
 
   notifyAndUpdateIsToggled() {
-    console.log("HEY listen", this.isToggled)
+    this.isToggledPreTest = !this.isToggledPreTest;
+    let toggle = {
+      preTest: this.isToggledPreTest,
+      postTest: this.isToggledPostTest
+    }
+    this.encuestaProvider.updateConfigurations(toggle);
   }
 
 }

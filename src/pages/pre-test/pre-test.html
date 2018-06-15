@@ -17,36 +17,38 @@
 
 
 <ion-content padding>
-    <ion-item>
-      <ion-label>Pepperoni</ion-label>
-      <ion-toggle [ngModel]="isToggled" (ngModelChange)="notifyAndUpdateIsToggled()"></ion-toggle>
+    <ion-item *ngIf="this.userProvider.loguedUser.admin">
+      <ion-label>Habilitar cuestionarios pre-test</ion-label>
+      <ion-toggle [ngModel]="isToggledPreTest" (ngModelChange)="notifyAndUpdateIsToggled()"></ion-toggle>
     </ion-item>
-    <ion-item>
-      <ion-icon ios="ios-create" md="md-create" item-start></ion-icon>
-      <button ion-button (click)="openLink('https://goo.gl/forms/O6vsWx1ZC4S6yJf92')">
-        Cuestionario de inteligencia
-      </button>
-    </ion-item>
-
-    <ion-item>
-      <ion-icon ios="ios-create" md="md-create" item-start></ion-icon>
-      <button ion-button (click)="openLink('https://goo.gl/forms/yX2CJnN1013zaLiy1')">
-        Cuestionario M.A.P.E
-      </button>
-    </ion-item>
-
-    <ion-item>
-      <ion-icon ios="ios-create" md="md-create" item-start></ion-icon>
-      <button ion-button (click)="openLink('https://goo.gl/forms/ntEX0g2PDNIw6bW93')">
-        Cuestionario LASSI
-      </button>
-    </ion-item>
-
-    <ion-item>
-      <ion-icon ios="ios-create" md="md-create" item-start></ion-icon>
-
-      <button ion-button (click)="openLink('https://goo.gl/forms/6l30ViWvQQmGItd12')">
-        Cuestionario de Objetivos de Logro
-      </button>
-    </ion-item>
+    <div *ngIf="isToggledPreTest">
+      <ion-item>
+          <ion-icon ios="ios-create" md="md-create" item-start></ion-icon>
+          <button ion-button (click)="openLink('https://goo.gl/forms/O6vsWx1ZC4S6yJf92')">
+            Cuestionario de inteligencia
+          </button>
+        </ion-item>
+    
+        <ion-item>
+          <ion-icon ios="ios-create" md="md-create" item-start></ion-icon>
+          <button ion-button (click)="openLink('https://goo.gl/forms/yX2CJnN1013zaLiy1')">
+            Cuestionario M.A.P.E
+          </button>
+        </ion-item>
+    
+        <ion-item>
+          <ion-icon ios="ios-create" md="md-create" item-start></ion-icon>
+          <button ion-button (click)="openLink('https://goo.gl/forms/ntEX0g2PDNIw6bW93')">
+            Cuestionario LASSI
+          </button>
+        </ion-item>
+    
+        <ion-item>
+          <ion-icon ios="ios-create" md="md-create" item-start></ion-icon>
+    
+          <button ion-button (click)="openLink('https://goo.gl/forms/6l30ViWvQQmGItd12')">
+            Cuestionario de Objetivos de Logro
+          </button>
+        </ion-item>
+    </div>
 </ion-content>

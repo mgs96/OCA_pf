@@ -59,7 +59,7 @@ import { NewNrcPageModule } from '../pages/new-nrc/new-nrc.module';
 import { StudentListPage } from '../pages/student-list/student-list';
 import { StudentListPageModule } from '../pages/student-list/student-list.module';
 import { AddStudentPageModule } from '../pages/add-student/add-student.module';
-import { ConfigurationsProvider } from '../providers/configurations/configurations';
+import { EncuestaProvider } from '../providers/encuesta/encuesta';
 
 @NgModule({
   declarations: [
@@ -127,7 +127,7 @@ import { ConfigurationsProvider } from '../providers/configurations/configuratio
     StatusProvider,
     InAppBrowser,
     TallerProvider,
-    ConfigurationsProvider
+    EncuestaProvider
   ]
 })
 export class AppModule {}
