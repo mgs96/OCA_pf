@@ -72,9 +72,9 @@ export class TallerProvider {
     });
   }
 
-  addAbscence(nrcUid, user) {
-    console.log(JSON.stringify(user));
-    let newAbscence = user.absence + 1;
+  addAbscence(nrcUid, user, remove = 1) {
+    //console.log(JSON.stringify(user));
+    let newAbscence = user.absence + 1 * remove;
     var promise = new Promise((resolve, reject) => {
       this.workshop.child(nrcUid).child(user.userUid).update({
         absence: newAbscence
@@ -88,7 +88,7 @@ export class TallerProvider {
   }
 
   readNrcs(callback, uid = firebase.auth().currentUser) {
-    console.log(firebase.auth().currentUser);
+    //console.log(firebase.auth().currentUser);
     this.nrcs.child(firebase.auth().currentUser.uid).on('value', snapshot => {
       callback(snapshot);
     });

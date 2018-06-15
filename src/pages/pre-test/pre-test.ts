@@ -16,6 +16,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 export class PreTestPage {
 
+  isToggled: boolean = false;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -25,6 +27,10 @@ export class PreTestPage {
 
   openLink(link: string) {
     this.iab.create(link);
+  }
+
+  notifyAndUpdateIsToggled() {
+    console.log("HEY listen", this.isToggled)
   }
 
 }

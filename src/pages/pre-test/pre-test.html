@@ -18,6 +18,10 @@
 
 <ion-content padding>
     <ion-item>
+      <ion-label>Pepperoni</ion-label>
+      <ion-toggle [ngModel]="isToggled" (ngModelChange)="notifyAndUpdateIsToggled()"></ion-toggle>
+    </ion-item>
+    <ion-item>
       <ion-icon ios="ios-create" md="md-create" item-start></ion-icon>
       <button ion-button (click)="openLink('https://goo.gl/forms/O6vsWx1ZC4S6yJf92')">
         Cuestionario de inteligencia
